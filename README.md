@@ -22,6 +22,7 @@ You can also choose the number group to show in the setting
 If the user have more group, a show all button will appear to give the ability to show all group.
 Ability to sort by creation date or alphabitical
 French as been add
+Available for full-with layout
 
 ## Summary
 
