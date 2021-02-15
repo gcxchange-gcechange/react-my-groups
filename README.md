@@ -18,11 +18,11 @@ copy of: https://github.com/pnp/sp-dev-fx-webparts/blob/master/samples/react-my-
 
 # My Groups
 ## Update
-You can also choose the number group to show in the setting
-If the user have more group, a show all button will appear to give the ability to show all group.
-Ability to sort by creation date or alphabitical
-French as been add
-Available for full-with layout
+- You can choose the number group to display in the setting.
+- If the user have more group, a show all button will appear to give the ability to display all group.
+- Ability to sort by creation date or alphabitical.
+- French as been add.
+- Available in full-with layout.
 
 ## Summary
 
