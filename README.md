@@ -18,17 +18,17 @@ copy of: https://github.com/pnp/sp-dev-fx-webparts/blob/master/samples/react-my-
 
 # My Groups
 ## Update
-- You can choose the number group to display in the setting.
-- If the user have more group, a show all button will appear to give the ability to display all group.
-- Ability to sort by creation date or alphabitical.
-- French as been add.
-- Available in full-with layout.
+- You can choose the number of groups to display in the settings.
+- If the user has more groups, a show all button will appear to give the ability to display all of the user's groups.
+- Ability to sort by creation date or alphabetical.
+- French has been added.
+- Available in full-width layout.
 
 ## Summary
 
-Using Microsoft Graph, this webpart grabs the Office 365 groups the current user is a member of with links to the groups SharePoint site.
+Using Microsoft Graph, this webpart grabs the Office 365 groups the current user is a member of with links to the group's SharePoint site.
 
-The webpart has been updated to include a grid like in addition to the compact layout as seen below:
+The webpart has been updated to include a grid style layout, in addition to the compact layout as seen below:
 ![Grid Demo](./assets/React-MyGroups_Grid.png)
 
 Compact Layout:
@@ -80,6 +80,6 @@ Version|Date|Comments
 
 ## Features
 
-This web part lists the current user's Office 365 groups with links to the groups SharePoint site.
+This web part lists the current user's Office 365 groups with links to the group's SharePoint site.
 
 <img src="https://telemetry.sharepointpnp.com/sp-dev-fx-webparts/samples/react-my-groups" />
