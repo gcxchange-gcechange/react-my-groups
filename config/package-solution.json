@@ -6,6 +6,7 @@
     "version": "1.0.0.3",
     "includeClientSideAssets": true,
     "isDomainIsolated": false,
+    "skipFeatureDeployment": true,
     "webApiPermissionRequests": [
       {
         "resource": "Microsoft Graph",

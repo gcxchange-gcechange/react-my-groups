@@ -56,7 +56,12 @@ export class GroupList extends React.Component<IGroupListProps, {}> {
       <div
         style={{
           width: `${cellWidth}px`,
-          marginRight: `${cellPadding}px`
+          marginRight: `${cellPadding}px`,
+          border:"1px solid #edebe9",
+          borderRadius:"2px",
+          WebkitBoxShadow:"rgb(0 0 0 / 13%) 0 1.6px 3.6px 0 ,rgb(0 0 0 / 11%) 0 0.3px 0.9px 0",
+          boxShadow:"0 1.6px 3.6px 0 rgb(0 0 0 / 13%), 0 0.3px 0.9px 0 rgb(0 0 0 / 11%)",
+          marginBottom:"20px",
         }}
       >
         {this.props.onRenderItem(item, index)}

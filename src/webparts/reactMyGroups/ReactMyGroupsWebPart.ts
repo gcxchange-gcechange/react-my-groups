@@ -6,6 +6,7 @@ import { IPropertyPaneConfiguration, PropertyPaneTextField, PropertyPaneChoiceGr
 import GroupService from '../../services/GroupService';
 import * as strings from 'ReactMyGroupsWebPartStrings';
 import { ReactMyGroups, IReactMyGroupsProps } from './components';
+import { ThemeProvider, ThemeChangedEventArgs, IReadonlyTheme } from '@microsoft/sp-component-base';
 
 export interface IReactMyGroupsWebPartProps {
   titleEn: string;
@@ -13,9 +14,12 @@ export interface IReactMyGroupsWebPartProps {
   layout: string;
   sort: string;
   numberPerPage: number;
+  themeVariant: IReadonlyTheme | undefined;
 }
 
 export default class ReactMyGroupsWebPart extends BaseClientSideWebPart<IReactMyGroupsWebPartProps> {
+  private _themeProvider: ThemeProvider;
+  private _themeVariant: IReadonlyTheme;
 
   public render(): void {
     const element: React.ReactElement<IReactMyGroupsProps > = React.createElement(
@@ -27,6 +31,7 @@ export default class ReactMyGroupsWebPart extends BaseClientSideWebPart<IReactMy
         sort: this.properties.sort,
         numberPerPage: this.properties.numberPerPage,
         spHttpClient: this.context.spHttpClient,
+        themeVariant: this._themeVariant
       }
     );
 
@@ -34,9 +39,27 @@ export default class ReactMyGroupsWebPart extends BaseClientSideWebPart<IReactMy
   }
 
   protected onInit(): Promise<void> {
+    // Consume the new ThemeProvider service
+    this._themeProvider = this.context.serviceScope.consume(ThemeProvider.serviceKey);
+
+    // If it exists, get the theme variant
+    this._themeVariant = this._themeProvider.tryGetTheme();
+
+    // Register a handler to be notified if the theme variant changes
+    this._themeProvider.themeChangedEvent.add(this, this._handleThemeChangedEvent);
     return super.onInit().then(() => {
       GroupService.setup(this.context);
     });
+  }
+
+  /**
+ * Update the current theme variant reference and re-render.
+ *
+ * @param args The new theme
+ */
+  private _handleThemeChangedEvent(args: ThemeChangedEventArgs): void {
+    this._themeVariant = args.theme;
+    this.render();
   }
 
   protected onDispose(): void {

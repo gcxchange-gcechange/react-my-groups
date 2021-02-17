@@ -8,7 +8,8 @@ import { Spinner, ISize, GroupShowAll } from 'office-ui-fabric-react';
 import { GridLayout } from '../GridList';
 import * as strings from 'ReactMyGroupsWebPartStrings';
 import { SPHttpClient, SPHttpClientResponse } from '@microsoft/sp-http'; 
-import { DefaultButton, PrimaryButton,CommandBarButton } from 'office-ui-fabric-react/lib/Button';
+import { DefaultButton, PrimaryButton, CommandBarButton } from 'office-ui-fabric-react/lib/Button';
+import { IReadonlyTheme } from '@microsoft/sp-component-base';
 
 export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMyGroupsState> {
 
@@ -41,10 +42,12 @@ export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMy
 
       pagedItems = pagedItems.slice(pageStartAt, pageEndAt);
       showPages = true;
-     } 
+    }
+
+    const { semanticColors }: IReadonlyTheme = this.props.themeVariant;
 
     return (
-      <div className={ styles.reactMyGroups }>
+      <div className={styles.reactMyGroups} style={{ backgroundColor: semanticColors.bodyBackground }}>
         <div className={styles.title} role="heading" aria-level={2}>{(strings.userLang == "FR" ? this.props.titleFr :this.props.titleEn )} </div>      
           {this.state.isLoading ?
             <Spinner label="Loading sites..." />
