@@ -83,3 +83,77 @@ Version|Date|Comments
 This web part lists the current user's Office 365 groups with links to the groups SharePoint site.
 
 <img src="https://telemetry.sharepointpnp.com/sp-dev-fx-webparts/samples/react-my-groups" />
+
+---
+
+copie de: https://github.com/pnp/sp-dev-fx-webparts/blob/master/samples/react-my-groups/tsconfig.json
+
+# Mes groupes
+## Mise à jour
+- Vous pouvez choisir le nombre de groupes à afficher dans les paramètres.
+- Si l’utilisateur a plus de groupes, un bouton Afficher tout apparaît pour permettre l’affichage
+de tous les groupes de l’utilisateur.
+- Il est possible de trier les groupes par date de création ou par ordre alphabétique.
+- Le français a été ajouté.
+- La page est disponible en pleine largeur.
+## Résumé
+
+À l’aide de Microsoft Graph, ce composant WebPart affiche les groupes Office 365 dont l’utilisateur actuel est membre avec des liens vers le site SharePoint de chaque groupe.
+
+Le composant WebPart a été mis à jour pour inclure une disposition en grille, en plus de la disposition compacte, comme indiqué ci-dessous :
+
+![Grid Demo](./assets/React-MyGroups_Grid.png)
+
+Disposition compacte :
+![Compact Demo](./assets/React-MyGroups_Compact.png)
+
+Vous pouvez faire passer la disposition de grille à compacte à l’aide des paramètres de la fenêtre des propriétés :
+![Property Pane Demo](./assets/React-MyGroups_Property.png)
+
+## Version de cadre SharePoint utilisée
+
+![1.10.0](https://img.shields.io/badge/drop-1.10.0-green.svg)
+
+## S’applique à ce qui suit :
+
+* [SharePoint Framework](https://docs.microsoft.com/sharepoint/dev/spfx/sharepoint-framework-overview)
+
+
+## Solution
+
+Solution|Autheur(s)
+--------|---------
+react-my-groups | Zach Roberts
+
+## Historique des versions
+
+Version|Date|Commentaires
+-------|----|--------
+1.0|13 septembre 2019|Version initiale
+1.1|1er  juin 2020| Mise à jour vers SPFX 1.10.0
+1.2|8 juillet 2020| Ajout de la disposition de grille
+
+## Disclaimer
+
+**LE PRÉSENT CODE EST FOURNI *TEL QUEL* SANS GARANTIE D’AUCUNE SORTE, EXPRESSE OU IMPLICITE, Y COMPRIS LES GARANTIES IMPLICITES D’ADAPTATION À UN USAGE PARTICULIER, DE QUALITÉ MARCHANDE OU D’ABSENCE DE CONTREFAÇON.**
+
+---
+
+## Chemin minimal vers l’excellence
+
+* Clonez ce dépôt
+* dans l’exécution de ligne de commande :
+  * `npm install`
+  * `gulp bundle --ship`
+  * `gulp package-solution --ship`
+* Ajoutez la trousse à votre catalogue d’applications.
+* Approuvez les autorisations du Graph API dans le centre d’administration SharePoint.
+* Ajoutez le composant WebPart à votre page.
+
+
+## Fonctionnalités
+
+Ce composant WebPart répertorie les groupes Office 365 actuels de l’utilisateur avec des liens vers le site SharePoint de chaque groupe.
+
+<img src="https://telemetry.sharepointpnp.com/sp-dev-fx-webparts/samples/react-my-groups" />
+
