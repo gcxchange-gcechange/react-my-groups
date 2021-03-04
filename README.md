@@ -26,9 +26,9 @@ copy of: https://github.com/pnp/sp-dev-fx-webparts/blob/master/samples/react-my-
 
 ## Summary
 
-Using Microsoft Graph, this webpart grabs the Office 365 groups the current user is a member of with links to the groups SharePoint site.
+Using Microsoft Graph, this webpart grabs the Office 365 groups the current user is a member of with links to the groups' SharePoint site.
 
-The webpart has been updated to include a grid like in addition to the compact layout as seen below:
+The webpart has been updated to include a grid style layout, in addition to the compact layout as seen below:
 ![Grid Demo](./assets/React-MyGroups_Grid.png)
 
 Compact Layout:
@@ -80,7 +80,7 @@ Version|Date|Comments
 
 ## Features
 
-This web part lists the current user's Office 365 groups with links to the groups SharePoint site.
+This web part lists the current user's Office 365 groups with links to the  group's SharePoint site.
 
 <img src="https://telemetry.sharepointpnp.com/sp-dev-fx-webparts/samples/react-my-groups" />
 
