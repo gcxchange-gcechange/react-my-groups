@@ -6,6 +6,7 @@ import { IReactMyGroupsState } from './IReactMyGroupsState';
 import { GroupList } from '../GroupList';
 import { Spinner, ISize, GroupShowAll } from 'office-ui-fabric-react';
 import { GridLayout } from '../GridList';
+import { ListLayout } from '../ListLayout';
 import * as strings from 'ReactMyGroupsWebPartStrings';
 import { SPHttpClient, SPHttpClientResponse } from '@microsoft/sp-http'; 
 import { DefaultButton, PrimaryButton, CommandBarButton } from 'office-ui-fabric-react/lib/Button';
@@ -48,23 +49,27 @@ export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMy
 
     return (
       <div className={styles.reactMyGroups} style={{ backgroundColor: semanticColors.bodyBackground }}>
-        <div className={styles.title} role="heading" aria-level={2}>{(strings.userLang == "FR" ? this.props.titleFr :this.props.titleEn )} </div>      
+        <div className={styles.title} role="heading" aria-level={2}>{(strings.userLang == "FR" ? this.props.titleFr :this.props.titleEn )} </div> 
+        <div className={styles.seeAll}>{showPages && <a href={this.props.seeAllLink}>{strings.seeAll}</a>}</div>     
           {this.state.isLoading ?
             <Spinner label="Loading sites..." />
                 : 
-                <div>
+                <div className={styles.groupsContainer}>
                   {this.props.layout == 'Compact' ?
                     <GroupList groups={pagedItems} onRenderItem={(item: any, index: number) => this._onRenderItem(item, index)}/>
                   :
+                    this.props.layout == 'Grid' ?
                     <GridLayout sort={this.props.sort} items={pagedItems} onRenderGridItem={(item: any, finalSize: ISize, isCompact: boolean) => this._onRenderGridItem(item, finalSize, isCompact)}/>
+                    :            
+                      <ListLayout sort={this.props.sort} items={pagedItems} onRenderListItem={(item: any, finalSize: ISize, isCompact: boolean) => this._onRenderListItem(item, finalSize, isCompact)}/>
                   }
                   <div>
-                    {showPages &&
+                    {/* {showPages &&
                       <DefaultButton  className={styles.buttonLink} text={strings.showmore} onClick={this.ShowAll} />
                     }
                     {this.state.showless &&
                       <DefaultButton  className={styles.buttonLink} text={strings.showless} onClick={this.ShowLess} />
-                    }
+                    } */}
                   </div>
                 </div>
           }
@@ -93,6 +98,17 @@ export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMy
       GroupService.getGroupLinks(groupItem).then(groupurl => {
         this.setState(prevState => ({
           groups: prevState.groups.map(group => group.id === groupItem.id ? {...group, url: groupurl.value} : group)
+        }));
+      })
+    ));
+    this._getGroupMembers(groups);
+  }
+
+  public _getGroupMembers = (groups: any): void => {
+    groups.map(groupItem => (
+      GroupService.getGroupMembers(groupItem).then(groupmembers => {
+        this.setState(prevState => ({
+          groups: prevState.groups.map(group => group.id === groupItem.id ? {...group, members: groupmembers} : group)
         }));
       })
     ));
@@ -130,12 +146,32 @@ export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMy
   private _onRenderGridItem = (item: any, finalSize: ISize, isCompact: boolean): JSX.Element => {
 
     return (
-        <div className={styles.siteCard}>
+      <div className={styles.siteCard}>
+      <a href={item.url}>
+        <div className={styles.cardBanner}>
+          <div className={styles.topBanner} style={{backgroundColor: item.color}}></div>
+          <img className={styles.bannerImg} src={item.thumbnail} alt={`${strings.altImgLogo} ${item.displayName}`} />
+          <div className={styles.cardTitle}>{item.displayName}</div>
+        </div>
+      </a>
+    </div>
+    );
+  }
+
+  private _onRenderListItem = (item: any, finalSize: ISize, isCompact: boolean): JSX.Element => {
+
+    return (
+        <div className={styles.siteCardList}>
             <a href={item.url}>
-              <div className={styles.cardBanner}>
-                <div className={styles.topBanner} style={{backgroundColor: item.color}}></div>
-                <img className={styles.bannerImg} src={item.thumbnail} alt={`${strings.altImgLogo} ${item.displayName}`} />
-                <div className={styles.cardTitle}>{item.displayName}</div>
+              <div className={styles.cardBannerList}>
+                <div className={styles.articleFlex} style={{'width':'60px'}}>
+                   <img className={styles.bannerImgList} src={item.thumbnail} alt={`${strings.altImgLogo} ${item.displayName}`} />
+                </div>
+                <div className={`${styles.articleFlex} ${styles.secondSection}`}>
+                  <div className={styles.cardTitleList}>{item.displayName}</div>
+                  <div className={styles.cardDescription}>{item.description}</div>
+                <div className={styles.members}>{item.members} {strings.members}</div>
+              </div>
               </div>
             </a>
           </div>

@@ -49,6 +49,26 @@ export class GroupServiceManager {
     });
   }
 
+  public getGroupMembers(groups: IGroup): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      try {
+        this.context.msGraphClientFactory
+        .getClient()
+        .then((client: MSGraphClient) => {
+          client
+          .api(`/groups/${groups.id}/members/$count?ConsistencyLevel=eventual`)
+          .get((error: any, group: any, rawResponse: any) => {
+            resolve(group);
+            console.log("MEMBERS "+JSON.stringify(group))
+
+          });
+        });
+      } catch(error) {
+        console.error(error);
+      }
+    });
+  }
+
   public getGroupThumbnails(groups: IGroup): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       try {

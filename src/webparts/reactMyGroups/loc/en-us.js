@@ -17,6 +17,10 @@ define([], function() {
     "dateCreation": "Creation date",
     "alphabetical": "Alphabetical",
     "showmore": "Show more",
-    "showless": "Show less"
+    "showless": "Show less",
+    "members": "members",
+    "seeAllLink": "Link for see all",
+    "seeAll": "See all",
+    "ListIcon": "List"
   }
 });

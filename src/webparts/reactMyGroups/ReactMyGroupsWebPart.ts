@@ -9,6 +9,7 @@ import { ReactMyGroups, IReactMyGroupsProps } from './components';
 import { ThemeProvider, ThemeChangedEventArgs, IReadonlyTheme } from '@microsoft/sp-component-base';
 
 export interface IReactMyGroupsWebPartProps {
+  seeAllLink: string;
   titleEn: string;
   titleFr: string;
   layout: string;
@@ -25,6 +26,7 @@ export default class ReactMyGroupsWebPart extends BaseClientSideWebPart<IReactMy
     const element: React.ReactElement<IReactMyGroupsProps > = React.createElement(
       ReactMyGroups,
       {
+        seeAllLink: this.properties.seeAllLink,
         titleEn: this.properties.titleEn,
         titleFr: this.properties.titleFr,
         layout: this.properties.layout,
@@ -78,6 +80,9 @@ export default class ReactMyGroupsWebPart extends BaseClientSideWebPart<IReactMy
           groups: [
             {
               groupFields: [
+                PropertyPaneTextField('seeAllLink', {
+                  label: strings.seeAllLink
+                }),
                 PropertyPaneTextField('titleEn', {
                   label: strings.setTitleEn
                 }),
@@ -102,6 +107,12 @@ export default class ReactMyGroupsWebPart extends BaseClientSideWebPart<IReactMy
                       text: strings.compactIcon,
                       iconProps: { officeFabricIconFontName: "BulletedList2"},
                       checked: layout === "Compact" ? true : false
+                    },
+                    {
+                      key: "List",
+                      text: strings.ListIcon,
+                      iconProps: { officeFabricIconFontName: "ViewList"},
+                      checked: layout === "List" ? true : false
                     }
                   ]
                 }),

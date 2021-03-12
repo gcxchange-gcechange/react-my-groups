@@ -14,7 +14,7 @@
     text-decoration: none;
     display: block;
     margin-top: 4px;
-    width: 251.333px;
+    width: 225px;
     border: 1px solid transparent;
     margin-bottom: 8px;
   }
@@ -57,6 +57,15 @@
     position: relative;
   }
 
+  .siteCardList {
+    box-sizing: border-box;
+    outline: transparent;
+    position: relative;
+    border-image: initial;
+    overflow: hidden;
+    border-color: rgb(237, 235, 233);
+  }
+
   .siteCard {
     height: 200px;
     max-width: 286px;
@@ -74,11 +83,49 @@
     border-color: rgb(237, 235, 233);
   }
 
+  .cardBannerList {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
   .cardBanner {
     position: relative;
     height: 144px;
     padding-top: 40px;
     width: 100%;
+  }
+
+  .members{
+    color:darkgray;
+    font-size: 12px;
+    bottom: 0px;
+    padding-left:12px;
+  }
+
+  .articleFlex {
+    float:left;
+    padding:1%;
+  }
+
+  .secondSection{
+    width: calc(80% - 55px);
+  }
+
+  .cardTitleList {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    box-sizing: content-box;
+    max-height: 2.7em;
+    overflow: hidden;
+    text-align: left;
+    padding: 0 12px;
+    color: rgb(50, 49, 48);
   }
 
   .cardTitle {
@@ -97,11 +144,37 @@
     color: rgb(50, 49, 48);
   }
 
+  .cardDescription {
+    font-size: 14px;
+    line-height: 20px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    box-sizing: content-box;
+    overflow: hidden;
+    text-align: left;
+    padding: 0 12px;
+    color: rgb(50, 49, 48);
+  }
+
   .topBanner {
     position: absolute;
     top: 0;
     height: 40px;
     width: 100%;;
+  }
+
+  .bannerImgList {
+    width:100%;
+    box-sizing: border-box;
+    box-shadow: 0 0 4px 0 rgba(0,0,0,.2);
+    border-width: 1px;
+    border-style: solid;
+    border-image: initial;
+    border-color: rgb(255,255,255);
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
   }
 
   .bannerImg {
@@ -129,6 +202,7 @@
 
   a {
     text-decoration: none;
+    color:#106ebe;
   }
 
   .container {
@@ -163,6 +237,11 @@
     margin-right: 32px;
     margin-bottom: 18px;
     flex-grow: 1;
+    float:left;
+  }
+
+  .seeAll{
+    float:right;
   }
 
   .subTitle {
@@ -222,5 +301,8 @@
     cursor: pointer;
     position: absolute; 
     right: 0;
+  }
+  .groupsContainer{
+    clear:both;
   }
 }

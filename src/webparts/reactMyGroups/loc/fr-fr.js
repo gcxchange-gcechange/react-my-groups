@@ -17,6 +17,10 @@ define([], function() {
     "dateCreation": "Date de création",
     "alphabetical": "Alphabétique",
     "showmore": "Montrer plus",
-    "showless": "Montrer moins"
+    "showless": "Montrer moins",
+    "members": "membres",
+    "seeAllLink": "Lien pour Afficher tout",
+    "seeAll": "Afficher tout",
+    "ListIcon": "Liste"
   }
 });
