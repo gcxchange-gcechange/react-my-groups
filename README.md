@@ -18,6 +18,8 @@ copy of: https://github.com/pnp/sp-dev-fx-webparts/blob/master/samples/react-my-
 
 # My Groups
 ## Update
+- Option to show all groups, this will show 20 groups at the time (with pagination).
+- New link available to redirect at a specific page for the creation of the group.
 - You can choose the number group to display in the setting.
 - If the user have more group, see all button will show. In the setting, a input is available for the see all link.
 - Ability to sort by creation date or alphabitical.
@@ -91,6 +93,8 @@ copie de: https://github.com/pnp/sp-dev-fx-webparts/blob/master/samples/react-my
 
 # Mes groupes
 ## Mise à jour
+- Ajout de l'option de voir tous les groupes. Ceci permet de voir 20 groupes à la fois, avec une pagination.
+- Nouveau lien disponible pour rediriger l'utilisateur vers une page spécifique pour la création d'un groupe.
 - Vous pouvez choisir le nombre de groupes à afficher dans les paramètres.
 - Si l’utilisateur a plus de groupes, un bouton Afficher tout apparaît pour permettre l’affichage. Dans la section paramètre, un champ est disponible pour ajouter le lien au bouton Afficher tout.
 de tous les groupes de l’utilisateur.

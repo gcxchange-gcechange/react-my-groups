@@ -6,4 +6,5 @@ export interface IReactMyGroupsState {
   currentPage: number;
   pagelimit: number;
   showless: boolean;
+  pageSeeAll: boolean;
 }

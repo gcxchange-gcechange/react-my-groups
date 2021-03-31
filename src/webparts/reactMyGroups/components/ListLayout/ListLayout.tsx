@@ -35,7 +35,7 @@ export class ListLayout extends React.Component<IListLayoutProps, IListLayoutSta
          <FocusZone>
           <List
             role="presentation"
-            className={styles.gridLayout}
+            className={styles.listLayout}
             items={this.props.items}
             getItemCountForPage={this._getItemCountForPage}
             getPageHeight={this._getPageHeight}

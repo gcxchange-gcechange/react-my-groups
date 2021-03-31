@@ -21,6 +21,11 @@ define([], function() {
     "members": "membres",
     "seeAllLink": "Lien pour Afficher tout",
     "seeAll": "Afficher tout",
-    "ListIcon": "Liste"
+    "ListIcon": "Liste",
+    "createCommLink": "Lien pour créer une communauté",
+    "createComm": "Créez une communauté",
+    "seeAllToggle": "Ce webpart est pour la page Afficher tout",
+    "seeAllOn": "Oui",
+    "seeAllOff": "Non"
   }
 });
