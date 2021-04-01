@@ -89,6 +89,7 @@ This web part lists the current user's Office 365 groups with links to the  grou
 
 ---
 
+
 copie de: https://github.com/pnp/sp-dev-fx-webparts/blob/master/samples/react-my-groups
 
 # Mes groupes
@@ -102,6 +103,7 @@ de tous les groupes de l’utilisateur.
 - Le français a été ajouté.
 - La page est disponible en pleine largeur.
 - Nouvelle disposition de style Liste disponible.
+
 ## Résumé
 
 À l’aide de Microsoft Graph, ce composant WebPart affiche les groupes Office 365 dont l’utilisateur actuel est membre avec des liens vers le site SharePoint de chaque groupe.
