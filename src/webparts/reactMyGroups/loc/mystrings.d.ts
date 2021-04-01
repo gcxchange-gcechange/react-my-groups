@@ -26,6 +26,7 @@ declare interface IReactMyGroupsWebPartStrings {
   seeAllToggle: string;
   seeAllOn: string;
   seeAllOff:string;
+  loadingState: string;
 }
 
 declare module 'ReactMyGroupsWebPartStrings' {

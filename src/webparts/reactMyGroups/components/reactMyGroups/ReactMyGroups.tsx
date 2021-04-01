@@ -58,7 +58,7 @@ export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMy
         <div className={styles.seeAll}>{this.props.toggleSeeAll == false && <a href={this.props.seeAllLink}>{strings.seeAll}</a>}</div>
         <div className={styles.createComm}><Icon iconName="Add" className={styles.addIcon} /><a href={this.props.createCommLink}>{strings.createComm}</a></div>  
           {this.state.isLoading ?
-    <Spinner label="Loading sites..." />
+    <Spinner label={strings.loadingState} />
     : 
     <div>
     <div className={styles.groupsContainer}>

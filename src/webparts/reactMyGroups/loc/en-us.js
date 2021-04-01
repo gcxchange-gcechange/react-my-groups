@@ -26,6 +26,7 @@ define([], function() {
     "createComm": "Create a community",
     "seeAllToggle": "This webpart is for the see all page",
     "seeAllOn": "Yes",
-    "seeAllOff": "No"
+    "seeAllOff": "No",
+    "loadingState": "Loading"
   }
 });

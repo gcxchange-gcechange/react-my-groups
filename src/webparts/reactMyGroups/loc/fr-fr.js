@@ -26,6 +26,7 @@ define([], function() {
     "createComm": "Créez une communauté",
     "seeAllToggle": "Ce webpart est pour la page Afficher tout",
     "seeAllOn": "Oui",
-    "seeAllOff": "Non"
+    "seeAllOff": "Non",
+    "loadingState": "Chargement en cours"
   }
 });
