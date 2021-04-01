@@ -2,17 +2,20 @@ import * as React from 'react';
 import * as ReactDom from 'react-dom';
 import { Version } from '@microsoft/sp-core-library';
 import { BaseClientSideWebPart } from "@microsoft/sp-webpart-base";
-import { IPropertyPaneConfiguration, PropertyPaneTextField, PropertyPaneChoiceGroup } from "@microsoft/sp-property-pane";
+import { IPropertyPaneConfiguration, PropertyPaneTextField, PropertyPaneChoiceGroup, PropertyPaneToggle } from "@microsoft/sp-property-pane";
 import GroupService from '../../services/GroupService';
 import * as strings from 'ReactMyGroupsWebPartStrings';
 import { ReactMyGroups, IReactMyGroupsProps } from './components';
 import { ThemeProvider, ThemeChangedEventArgs, IReadonlyTheme } from '@microsoft/sp-component-base';
 
 export interface IReactMyGroupsWebPartProps {
+  seeAllLink: string;
+  createCommLink: string;
   titleEn: string;
   titleFr: string;
   layout: string;
   sort: string;
+  toggleSeeAll: boolean;
   numberPerPage: number;
   themeVariant: IReadonlyTheme | undefined;
 }
@@ -25,11 +28,14 @@ export default class ReactMyGroupsWebPart extends BaseClientSideWebPart<IReactMy
     const element: React.ReactElement<IReactMyGroupsProps > = React.createElement(
       ReactMyGroups,
       {
+        seeAllLink: this.properties.seeAllLink,
+        createCommLink: this.properties.createCommLink,
         titleEn: this.properties.titleEn,
         titleFr: this.properties.titleFr,
         layout: this.properties.layout,
         sort: this.properties.sort,
         numberPerPage: this.properties.numberPerPage,
+        toggleSeeAll: this.properties.toggleSeeAll,
         spHttpClient: this.context.spHttpClient,
         themeVariant: this._themeVariant
       }
@@ -72,21 +78,45 @@ export default class ReactMyGroupsWebPart extends BaseClientSideWebPart<IReactMy
 
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
     const { layout }  = this.properties;
+    let numberPerPageOption: any;
+        // if toggleSeeAll is true desable numberperpage
+        if (this.properties.toggleSeeAll) {
+          numberPerPageOption = PropertyPaneTextField('numberPerPage', {
+            label: strings.setPageNum,
+            disabled: true
+          })
+        } else {
+          numberPerPageOption =   PropertyPaneTextField('numberPerPage', {
+            label: strings.setPageNum,
+            disabled: false
+          })
+        }
     return {
       pages: [
         {
           groups: [
             {
               groupFields: [
+                PropertyPaneTextField('seeAllLink', {
+                  label: strings.seeAllLink
+                }),
+                PropertyPaneTextField('createCommLink', {
+                  label: strings.createCommLink
+                }),
                 PropertyPaneTextField('titleEn', {
                   label: strings.setTitleEn
                 }),
                 PropertyPaneTextField('titleFr', {
                   label: strings.setTitleFr
                 }),
-                PropertyPaneTextField('numberPerPage', {
-                  label: strings.setPageNum
+                PropertyPaneToggle('toggleSeeAll', {
+                  key: 'toggleSeeAll',
+                  label: strings.seeAllToggle,
+                  checked: false,
+                  onText: strings.seeAllOn,
+                  offText: strings.seeAllOff,
                 }),
+                numberPerPageOption,
                 PropertyPaneChoiceGroup("layout", {
                   label: strings.setLayoutOpt,
                   options: [
@@ -102,6 +132,12 @@ export default class ReactMyGroupsWebPart extends BaseClientSideWebPart<IReactMy
                       text: strings.compactIcon,
                       iconProps: { officeFabricIconFontName: "BulletedList2"},
                       checked: layout === "Compact" ? true : false
+                    },
+                    {
+                      key: "List",
+                      text: strings.ListIcon,
+                      iconProps: { officeFabricIconFontName: "ViewList"},
+                      checked: layout === "List" ? true : false
                     }
                   ]
                 }),

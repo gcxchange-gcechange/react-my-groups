@@ -17,6 +17,16 @@ declare interface IReactMyGroupsWebPartStrings {
   alphabetical: string;
   showmore: string;
   showless: string;
+  members:string;
+  seeAllLink: string;
+  seeAll: string;
+  ListIcon: string;
+  createCommLink: string;
+  createComm: string;
+  seeAllToggle: string;
+  seeAllOn: string;
+  seeAllOff:string;
+  loadingState: string;
 }
 
 declare module 'ReactMyGroupsWebPartStrings' {

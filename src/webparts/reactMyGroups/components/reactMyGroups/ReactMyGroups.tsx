@@ -4,12 +4,13 @@ import { IReactMyGroupsProps } from './IReactMyGroupsProps';
 import GroupService from '../../../../services/GroupService';
 import { IReactMyGroupsState } from './IReactMyGroupsState';
 import { GroupList } from '../GroupList';
-import { Spinner, ISize, GroupShowAll } from 'office-ui-fabric-react';
+import { Spinner, ISize } from 'office-ui-fabric-react';
 import { GridLayout } from '../GridList';
+import { ListLayout } from '../ListLayout';
 import * as strings from 'ReactMyGroupsWebPartStrings';
-import { SPHttpClient, SPHttpClientResponse } from '@microsoft/sp-http'; 
-import { DefaultButton, PrimaryButton, CommandBarButton } from 'office-ui-fabric-react/lib/Button';
 import { IReadonlyTheme } from '@microsoft/sp-component-base';
+import { Icon } from 'office-ui-fabric-react/lib/Icon';
+import { Paging } from '../../components/paging';
 
 export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMyGroupsState> {
 
@@ -21,7 +22,8 @@ export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMy
       isLoading: true,
       currentPage: 1,
       pagelimit: 0,
-      showless: false
+      showless: false,
+      pageSeeAll: false
     };
   }
 
@@ -32,9 +34,13 @@ export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMy
     const totalItems: number = pagedItems.length;
     let showPages: boolean = false;
 
-    const maxEvents: number = this.state.pagelimit;
+    var maxEvents: number = this.props.numberPerPage;
     const { currentPage } = this.state;
 
+    //if on see all page, only show 20 at the time
+    if(this.props.toggleSeeAll){
+      maxEvents = 20;
+    } 
     if (true && totalItems > 0 && totalItems > maxEvents) {
 
       const pageStartAt: number = maxEvents * (currentPage - 1);
@@ -48,27 +54,41 @@ export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMy
 
     return (
       <div className={styles.reactMyGroups} style={{ backgroundColor: semanticColors.bodyBackground }}>
-        <div className={styles.title} role="heading" aria-level={2}>{(strings.userLang == "FR" ? this.props.titleFr :this.props.titleEn )} </div>      
+        <div className={styles.title} role="heading" aria-level={2}>{(strings.userLang == "FR" ? this.props.titleFr :this.props.titleEn )} </div> 
+        <div className={styles.seeAll}>{this.props.toggleSeeAll == false && <a href={this.props.seeAllLink}>{strings.seeAll}</a>}</div>
+        <div className={styles.createComm}><Icon iconName="Add" className={styles.addIcon} /><a href={this.props.createCommLink}>{strings.createComm}</a></div>  
           {this.state.isLoading ?
-            <Spinner label="Loading sites..." />
-                : 
-                <div>
-                  {this.props.layout == 'Compact' ?
-                    <GroupList groups={pagedItems} onRenderItem={(item: any, index: number) => this._onRenderItem(item, index)}/>
-                  :
-                    <GridLayout sort={this.props.sort} items={pagedItems} onRenderGridItem={(item: any, finalSize: ISize, isCompact: boolean) => this._onRenderGridItem(item, finalSize, isCompact)}/>
-                  }
+    <Spinner label={strings.loadingState} />
+    : 
+    <div>
+    <div className={styles.groupsContainer}>
+      {this.props.layout == 'Compact' ?
+        <GroupList groups={pagedItems} onRenderItem={(item: any, index: number) => this._onRenderItem(item, index)}/>
+      :
+        this.props.layout == 'Grid' ?
+        <GridLayout sort={this.props.sort} items={pagedItems} onRenderGridItem={(item: any, finalSize: ISize, isCompact: boolean) => this._onRenderGridItem(item, finalSize, isCompact)}/>
+        :            
+          <ListLayout sort={this.props.sort} items={pagedItems} onRenderListItem={(item: any, finalSize: ISize, isCompact: boolean) => this._onRenderListItem(item, finalSize, isCompact)}/>
+      }
+                  {this.props.toggleSeeAll ?
                   <div>
-                    {showPages &&
-                      <DefaultButton  className={styles.buttonLink} text={strings.showmore} onClick={this.ShowAll} />
-                    }
-                    {this.state.showless &&
-                      <DefaultButton  className={styles.buttonLink} text={strings.showless} onClick={this.ShowLess} />
-                    }
-                  </div>
+                    <Paging
+                      showPageNumber={true}
+                      currentPage={currentPage}
+                      itemsCountPerPage={20}
+                      totalItems={totalItems}
+                      onPageUpdate={this._onPageUpdate}
+                      nextButtonLabel={strings.pagNext}
+                      previousButtonLabel={strings.pagPrev}
+                    />
+                  </div> : ""
+                  }
                 </div>
+      </div>
+          
           }
       </div>
+      
     );
   }
 
@@ -93,6 +113,17 @@ export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMy
       GroupService.getGroupLinks(groupItem).then(groupurl => {
         this.setState(prevState => ({
           groups: prevState.groups.map(group => group.id === groupItem.id ? {...group, url: groupurl.value} : group)
+        }));
+      })
+    ));
+    this._getGroupMembers(groups);
+  }
+
+  public _getGroupMembers = (groups: any): void => {
+    groups.map(groupItem => (
+      GroupService.getGroupMembers(groupItem).then(groupmembers => {
+        this.setState(prevState => ({
+          groups: prevState.groups.map(group => group.id === groupItem.id ? {...group, members: groupmembers} : group)
         }));
       })
     ));
@@ -130,39 +161,42 @@ export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMy
   private _onRenderGridItem = (item: any, finalSize: ISize, isCompact: boolean): JSX.Element => {
 
     return (
-        <div className={styles.siteCard}>
-            <a href={item.url}>
-              <div className={styles.cardBanner}>
-                <div className={styles.topBanner} style={{backgroundColor: item.color}}></div>
-                <img className={styles.bannerImg} src={item.thumbnail} alt={`${strings.altImgLogo} ${item.displayName}`} />
-                <div className={styles.cardTitle}>{item.displayName}</div>
+      <div className={styles.siteCard}>
+      <a href={item.url}>
+        <div className={styles.cardBanner}>
+          <div className={styles.topBanner} style={{backgroundColor: item.color}}></div>
+          <img className={styles.bannerImg} src={item.thumbnail} alt={`${strings.altImgLogo} ${item.displayName}`} />
+          <div className={styles.cardTitle}>{item.displayName}</div>
+        </div>
+      </a>
+    </div>
+    );
+  }
+
+  private _onRenderListItem = (item: any, finalSize: ISize, isCompact: boolean): JSX.Element => {
+
+    return (
+        <div className={styles.siteCardList}>
+        <a href={item.url}>
+           <div className={styles.cardBannerList}>
+                <div className={styles.articleFlex} style={{'width':'60px'}}>
+                   <img className={styles.bannerImgList} src={item.thumbnail} alt={`${strings.altImgLogo} ${item.displayName}`} />
+                </div>
+                <div className={`${styles.articleFlex} ${styles.secondSection}`}>
+                  <div className={styles.cardTitleList}>{item.displayName}</div>
+                  <div className={styles.cardDescription}>{item.description}</div>
+                <div className={styles.members}>{item.members} {strings.members}</div>
+              </div>
               </div>
             </a>
           </div>
-    );
-  }
+          );
+        }
+      
 
    private _onPageUpdate = (pageNumber: number): void => {
     this.setState({
       currentPage: pageNumber
     });
-  }
-
-  private ShowAll= (): void =>{
-    if(this.state.pagelimit != 0){
-      this.setState({
-        pagelimit:999,
-        showless: true
-      })
-    }
-  }
-
-  private ShowLess= (): void =>{
-    if(this.state.pagelimit != 0){
-      this.setState({
-        pagelimit:this.props.numberPerPage,
-        showless: false
-      })
-    }
   }
 }

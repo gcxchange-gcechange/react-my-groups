@@ -14,15 +14,18 @@ extensions:
   createdDate: 6/1/2020 12:00:00 AM
 ---
 
-copy of: https://github.com/pnp/sp-dev-fx-webparts/blob/master/samples/react-my-groups/tsconfig.json
+copy of: https://github.com/pnp/sp-dev-fx-webparts/blob/master/samples/react-my-groups
 
 # My Groups
 ## Update
+- Option to show all groups, this will show 20 groups at the time (with pagination).
+- New link available to redirect at a specific page for the creation of the group.
 - You can choose the number group to display in the setting.
-- If the user have more group, a show all button will appear to give the ability to display all group.
+- If the user have more group, see all button will show. In the setting, a input is available for the see all link.
 - Ability to sort by creation date or alphabitical.
 - French as been add.
 - Available in full-with layout.
+- New List style layout available.
 
 ## Summary
 
@@ -86,16 +89,21 @@ This web part lists the current user's Office 365 groups with links to the  grou
 
 ---
 
-copie de: https://github.com/pnp/sp-dev-fx-webparts/blob/master/samples/react-my-groups/tsconfig.json
+
+copie de: https://github.com/pnp/sp-dev-fx-webparts/blob/master/samples/react-my-groups
 
 # Mes groupes
 ## Mise à jour
+- Ajout de l'option de voir tous les groupes. Ceci permet de voir 20 groupes à la fois, avec une pagination.
+- Nouveau lien disponible pour rediriger l'utilisateur vers une page spécifique pour la création d'un groupe.
 - Vous pouvez choisir le nombre de groupes à afficher dans les paramètres.
-- Si l’utilisateur a plus de groupes, un bouton Afficher tout apparaît pour permettre l’affichage
+- Si l’utilisateur a plus de groupes, un bouton Afficher tout apparaît pour permettre l’affichage. Dans la section paramètre, un champ est disponible pour ajouter le lien au bouton Afficher tout.
 de tous les groupes de l’utilisateur.
 - Il est possible de trier les groupes par date de création ou par ordre alphabétique.
 - Le français a été ajouté.
 - La page est disponible en pleine largeur.
+- Nouvelle disposition de style Liste disponible.
+
 ## Résumé
 
 À l’aide de Microsoft Graph, ce composant WebPart affiche les groupes Office 365 dont l’utilisateur actuel est membre avec des liens vers le site SharePoint de chaque groupe.

@@ -17,6 +17,16 @@ define([], function() {
     "dateCreation": "Creation date",
     "alphabetical": "Alphabetical",
     "showmore": "Show more",
-    "showless": "Show less"
+    "showless": "Show less",
+    "members": "members",
+    "seeAllLink": "Link for see all",
+    "seeAll": "See all",
+    "ListIcon": "List",
+    "createCommLink": "Link for create a community",
+    "createComm": "Create a community",
+    "seeAllToggle": "This webpart is for the see all page",
+    "seeAllOn": "Yes",
+    "seeAllOff": "No",
+    "loadingState": "Loading"
   }
 });

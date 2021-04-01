@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styles from './GridLayout.module.scss';
+import styles from './ListLayout.module.scss';
 
 // Used to render list grid
 import { FocusZone } from 'office-ui-fabric-react/lib/FocusZone';
@@ -7,7 +7,7 @@ import { List } from 'office-ui-fabric-react/lib/List';
 import { IRectangle, ISize } from 'office-ui-fabric-react/lib/Utilities';
 import { Spinner } from 'office-ui-fabric-react';
 
-import { IGridLayoutProps, IGridLayoutState } from './GridLayout.types';
+import { IListLayoutProps, IListLayoutState } from './ListLayout.types';
 
 const ROWS_PER_PAGE: number = +styles.rowsPerPage;
 const MAX_ROW_HEIGHT: number = +styles.maxWidth;
@@ -16,8 +16,8 @@ const MIN_WIDTH: number = +styles.minWidth;
 const COMPACT_THRESHOLD: number = +styles.compactThreshold;
 
 
-export class GridLayout extends React.Component<IGridLayoutProps, IGridLayoutState> {
-  constructor(props: IGridLayoutProps) {
+export class ListLayout extends React.Component<IListLayoutProps, IListLayoutState> {
+  constructor(props: IListLayoutProps) {
     super(props);
     this.state = {
       isLoading: true
@@ -28,14 +28,14 @@ export class GridLayout extends React.Component<IGridLayoutProps, IGridLayoutSta
   private _rowHeight: number;
   private _isCompact: boolean;
 
-  public render(): React.ReactElement<IGridLayoutProps> {
+  public render(): React.ReactElement<IListLayoutProps> {
 
     return (
       <div role="group" aria-label={this.props.ariaLabel}>
          <FocusZone>
           <List
             role="presentation"
-            className={styles.gridLayout}
+            className={styles.listLayout}
             items={this.props.items}
             getItemCountForPage={this._getItemCountForPage}
             getPageHeight={this._getPageHeight}
@@ -79,13 +79,12 @@ export class GridLayout extends React.Component<IGridLayoutProps, IGridLayoutSta
     let _totalPages = Math.ceil(item.length / 2);
     return (
       <div
-      className={styles.rendergrid}
         style={{
           width: `${cellWidth}px`,
           marginRight: `${cellPadding}px`
         }}
       >
-          {this.props.onRenderGridItem(item, finalSize, isCompact)}
+          {this.props.onRenderListItem(item, finalSize, isCompact)}
 
       </div>
     );

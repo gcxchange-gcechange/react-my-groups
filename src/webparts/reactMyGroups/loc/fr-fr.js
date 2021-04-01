@@ -17,6 +17,16 @@ define([], function() {
     "dateCreation": "Date de création",
     "alphabetical": "Alphabétique",
     "showmore": "Montrer plus",
-    "showless": "Montrer moins"
+    "showless": "Montrer moins",
+    "members": "membres",
+    "seeAllLink": "Lien pour Afficher tout",
+    "seeAll": "Afficher tout",
+    "ListIcon": "Liste",
+    "createCommLink": "Lien pour créer une communauté",
+    "createComm": "Créez une communauté",
+    "seeAllToggle": "Ce webpart est pour la page Afficher tout",
+    "seeAllOn": "Oui",
+    "seeAllOff": "Non",
+    "loadingState": "Chargement en cours"
   }
 });

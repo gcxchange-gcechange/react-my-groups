@@ -8,11 +8,12 @@
   rowsPerPage: 3;
 }
 
-.gridLayout {
+.listLayout {
   overflow: hidden;
   font-size: 0;
   position: relative;
   background-color: transparent;
+  border-top: 1px solid #ebede9;
 
   :global(.ms-DocumentCard) {
     position: relative;
@@ -55,9 +56,9 @@
   :global(.ms-List-cell) {
     vertical-align: top;
     display: inline-block;
-    margin-bottom: 20px;
-  }
-  .rendergrid{
-    margin-right:20px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #edebe9;
+    
   }
 }
