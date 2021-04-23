@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
   "solution": {
-    "name": "react-my-groups-client-side-solution",
+    "name": "My Communities",
     "id": "da7eafe2-f2ec-486f-99d8-d36fba06a2bf",
     "version": "1.0.0.3",
     "includeClientSideAssets": true,
@@ -19,6 +19,6 @@
     ]
   },
   "paths": {
-    "zippedPackage": "solution/react-my-groups.sppkg"
+    "zippedPackage": "solution/My-Communities.sppkg"
   }
 }

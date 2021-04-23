@@ -21,11 +21,11 @@
     {
       "groupId": "5c03119e-3074-46fd-976b-c60198311f70", // Other
       "group": { "default": "Other" },
-      "title": { "default": "react-my-groups" },
-      "description": { "default": "react-my-groups description" },
+      "title": { "default": "My Communities" },
+      "description": { "default": "My Communities description" },
       "officeFabricIconFontName": "Page",
       "properties": {
-        "description": "react-my-groups",
+        "description": "My Communities",
         "sort": "DateCreation",
         "numberPerPage": 4
       }
