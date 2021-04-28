@@ -63,6 +63,10 @@
     border-image: initial;
     overflow: hidden;
     border-color: rgb(237, 235, 233);
+    margin-top: 3px;
+  }
+  div[class^="siteCardList"]:focus-within {
+    outline: 2px solid black;
   }
   .siteCard {
     height: 200px;
@@ -96,7 +100,7 @@
   }
 
   .members{
-    color:darkgray;
+    color:#6B6B6B;
     font-size: 12px;
     bottom: 0px;
     padding-left:12px;
@@ -293,7 +297,7 @@
     color: #069;
     text-decoration: underline;
     cursor: pointer;
-    position: absolute; 
+    position: absolute;
     right: 0;
   }
   .groupsContainer{

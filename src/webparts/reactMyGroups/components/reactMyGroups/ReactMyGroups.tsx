@@ -40,7 +40,7 @@ export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMy
     //if on see all page, only show 20 at the time
     if(this.props.toggleSeeAll){
       maxEvents = 20;
-    } 
+    }
     if (true && totalItems > 0 && totalItems > maxEvents) {
 
       const pageStartAt: number = maxEvents * (currentPage - 1);
@@ -54,12 +54,12 @@ export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMy
 
     return (
       <div className={styles.reactMyGroups} style={{ backgroundColor: semanticColors.bodyBackground }}>
-        <div className={styles.title} role="heading" aria-level={2}>{(strings.userLang == "FR" ? this.props.titleFr :this.props.titleEn )} </div> 
-        <div className={styles.seeAll}>{this.props.toggleSeeAll == false && <a href={this.props.seeAllLink}>{strings.seeAll}</a>}</div>
-        <div className={styles.createComm}><Icon iconName="Add" className={styles.addIcon} /><a href={this.props.createCommLink}>{strings.createComm}</a></div>  
+        <div className={styles.title} role="heading" aria-level={2}>{(strings.userLang == "FR" ? this.props.titleFr :this.props.titleEn )} </div>
+        <div className={styles.seeAll}>{this.props.toggleSeeAll == false && <a aria-label={strings.seeAllLabel} href={this.props.seeAllLink}>{strings.seeAll}</a>}</div>
+        <div className={styles.createComm}><Icon iconName="Add" className={styles.addIcon} /><a href={this.props.createCommLink}>{strings.createComm}</a></div>
           {this.state.isLoading ?
     <Spinner label={strings.loadingState} />
-    : 
+    :
     <div>
     <div className={styles.groupsContainer}>
       {this.props.layout == 'Compact' ?
@@ -67,7 +67,7 @@ export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMy
       :
         this.props.layout == 'Grid' ?
         <GridLayout sort={this.props.sort} items={pagedItems} onRenderGridItem={(item: any, finalSize: ISize, isCompact: boolean) => this._onRenderGridItem(item, finalSize, isCompact)}/>
-        :            
+        :
           <ListLayout sort={this.props.sort} items={pagedItems} onRenderListItem={(item: any, finalSize: ISize, isCompact: boolean) => this._onRenderListItem(item, finalSize, isCompact)}/>
       }
                   {this.props.toggleSeeAll ?
@@ -85,10 +85,10 @@ export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMy
                   }
                 </div>
       </div>
-          
+
           }
       </div>
-      
+
     );
   }
 
@@ -177,7 +177,7 @@ export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMy
 
     return (
         <div className={styles.siteCardList}>
-        <a href={item.url}>
+        <a className="community-list-item" href={item.url}>
            <div className={styles.cardBannerList}>
                 <div className={styles.articleFlex} style={{'width':'60px'}}>
                    <img className={styles.bannerImgList} src={item.thumbnail} alt={`${strings.altImgLogo} ${item.displayName}`} />
@@ -192,7 +192,7 @@ export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMy
           </div>
           );
         }
-      
+
 
    private _onPageUpdate = (pageNumber: number): void => {
     this.setState({

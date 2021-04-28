@@ -20,6 +20,7 @@ declare interface IReactMyGroupsWebPartStrings {
   members:string;
   seeAllLink: string;
   seeAll: string;
+  seeAllLabel: string;
   ListIcon: string;
   createCommLink: string;
   createComm: string;
