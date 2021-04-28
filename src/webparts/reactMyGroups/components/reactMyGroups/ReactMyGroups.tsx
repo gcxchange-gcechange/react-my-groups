@@ -109,35 +109,32 @@ export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMy
   }
 
   public _getGroupLinks = (groups: any): void => {
-    groups.map(groupItem => (
-      GroupService.getGroupLinks(groupItem).then(groupurl => {
-        this.setState(prevState => ({
-          groups: prevState.groups.map(group => group.id === groupItem.id ? {...group, url: groupurl.value} : group)
-        }));
-      })
-    ));
+    GroupService.getGroupLinksBatch(groups).then(groupurls => {
+      this.setState(prevState => ({
+        groups: prevState.groups.map(group => group.id !== null ? {...group, url: groupurls[group.id].value} : group)
+      }));
+    });
+
     this._getGroupMembers(groups);
   }
 
   public _getGroupMembers = (groups: any): void => {
-    groups.map(groupItem => (
-      GroupService.getGroupMembers(groupItem).then(groupmembers => {
-        this.setState(prevState => ({
-          groups: prevState.groups.map(group => group.id === groupItem.id ? {...group, members: groupmembers} : group)
-        }));
-      })
-    ));
+    GroupService.getGroupMembersBatch(groups).then(groupmembers => {
+      this.setState(prevState => ({
+        groups: prevState.groups.map(group => group.id !== null ? {...group, members: groupmembers[group.id]} : group)
+      }));
+    });
+
     this._getGroupThumbnails(groups);
   }
 
   public _getGroupThumbnails = (groups: any): void => {
-    groups.map(groupItem => (
-      GroupService.getGroupThumbnails(groupItem).then(grouptb => {
-        this.setState(prevState => ({
-          groups: prevState.groups.map(group => group.id === groupItem.id ? {...group, thumbnail: grouptb, color: "#0078d4"} : group)
-        }));
-      })
-    ));
+    GroupService.getGroupThumbnailsBatch(groups).then(grouptbs => {
+      this.setState(prevState => ({
+        groups: prevState.groups.map(group => group.id !== null ? {...group, thumbnail: grouptbs[group.id], color: "#0078d4"} : group)
+      }));
+    });
+
     this.setState({
       isLoading: false
     });
