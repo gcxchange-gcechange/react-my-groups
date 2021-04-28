@@ -21,6 +21,7 @@ define([], function() {
     "members": "members",
     "seeAllLink": "Link for see all",
     "seeAll": "See all",
+    "seeAllLabel": "See all of my communities",
     "ListIcon": "List",
     "createCommLink": "Link for create a community",
     "createComm": "Create a community",
