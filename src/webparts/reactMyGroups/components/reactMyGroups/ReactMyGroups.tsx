@@ -109,30 +109,30 @@ export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMy
   }
 
   public _getGroupLinks = (groups: any): void => {
-    GroupService.getGroupLinksBatch(groups).then(groupurls => {
-      this.setState(prevState => ({
-        groups: prevState.groups.map(group => group.id !== null ? {...group, url: groupurls[group.id].value} : group)
-      }));
+    GroupService.getGroupLinksBatch(groups).then(groupWithUrls => {
+      this.setState({
+        groups: groupWithUrls
+      });
     });
 
     this._getGroupMembers(groups);
   }
 
   public _getGroupMembers = (groups: any): void => {
-    GroupService.getGroupMembersBatch(groups).then(groupmembers => {
-      this.setState(prevState => ({
-        groups: prevState.groups.map(group => group.id !== null ? {...group, members: groupmembers[group.id]} : group)
-      }));
+    GroupService.getGroupMembersBatch(groups).then(groupWithMembers => {
+      this.setState({
+        groups: groupWithMembers
+      });
     });
 
     this._getGroupThumbnails(groups);
   }
 
   public _getGroupThumbnails = (groups: any): void => {
-    GroupService.getGroupThumbnailsBatch(groups).then(grouptbs => {
-      this.setState(prevState => ({
-        groups: prevState.groups.map(group => group.id !== null ? {...group, thumbnail: grouptbs[group.id], color: "#0078d4"} : group)
-      }));
+    GroupService.getGroupThumbnailsBatch(groups).then(groupWithtbs => {
+      this.setState({
+        groups: groupWithtbs
+      });
     });
 
     this.setState({

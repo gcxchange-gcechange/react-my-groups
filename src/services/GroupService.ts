@@ -49,6 +49,35 @@ export class GroupServiceManager {
     });
   }
 
+  public getGroupLinksBatch(groups: IGroup[]): Promise<MicrosoftGraph.Group[]> {
+    let requestBody = new MicrosoftGraph.BatchRequestContent(
+      groups.map( (group) => <MicrosoftGraph.BatchRequestStep>{
+        id: group.id,
+        request: new Request(`/groups/${group.id}/sites/root/weburl`, {
+          method: "GET"
+        })
+      })
+    );
+
+    return new Promise<MicrosoftGraph.Group[]>((resolve, reject) => {
+      try {
+        this.context.msGraphClientFactory
+        .getClient()
+        .then((client: MSGraphClient) => {
+          client
+          .api(`/$batch`)
+          .post( requestBody.getContent(), (error: any, rawResponse: any) => {
+            let linksResponseContent = new MicrosoftGraph.BatchResponseContent(rawResponse);
+
+            resolve(groups.map(group => group.id !== null ? {...group, url: linksResponseContent.getResponseById(group.id).json().body.value} : group));
+          });
+        });
+      } catch(error) {
+        console.error(error);
+      }
+    });
+  }
+
   public getGroupMembers(groups: IGroup): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       try {
@@ -61,6 +90,35 @@ export class GroupServiceManager {
             resolve(group);
             console.log("MEMBERS "+JSON.stringify(group))
 
+          });
+        });
+      } catch(error) {
+        console.error(error);
+      }
+    });
+  }
+
+  public getGroupMembersBatch(groups: IGroup[]): Promise<MicrosoftGraph.Group[]> {
+    let requestBody = new MicrosoftGraph.BatchRequestContent(
+      groups.map( (group) => <MicrosoftGraph.BatchRequestStep>{
+        id: group.id,
+        request: new Request(`/groups/${group.id}/members/$count?ConsistencyLevel=eventual`, {
+          method: "GET"
+        })
+      })
+    );
+
+    return new Promise<MicrosoftGraph.Group[]>((resolve, reject) => {
+      try {
+        this.context.msGraphClientFactory
+        .getClient()
+        .then((client: MSGraphClient) => {
+          client
+          .api(`/$batch`)
+          .post( requestBody.getContent(), (error: any, rawResponse: any) => {
+            let membersResponseContent = new MicrosoftGraph.BatchResponseContent(rawResponse);
+
+            resolve(groups.map(group => group.id !== null ? {...group, members: membersResponseContent.getResponseById(group.id).json().body.value} : group));
           });
         });
       } catch(error) {
@@ -84,6 +142,35 @@ export class GroupServiceManager {
         });
       } catch(error) {
         console.error("ERROR "+error);
+      }
+    });
+  }
+
+  public getGroupThumbnailsBatch(groups: IGroup[]): Promise<MicrosoftGraph.Group[]> {
+    let requestBody = new MicrosoftGraph.BatchRequestContent(
+      groups.map( (group) => <MicrosoftGraph.BatchRequestStep>{
+        id: group.id,
+        request: new Request(`/groups/${group.id}/photos/48x48/$value`, {
+          method: "GET"
+        })
+      })
+    );
+
+    return new Promise<MicrosoftGraph.Group[]>((resolve, reject) => {
+      try {
+        this.context.msGraphClientFactory
+        .getClient()
+        .then((client: MSGraphClient) => {
+          client
+          .api(`/$batch`)
+          .post( requestBody.getContent(), (error: any, rawResponse: any) => {
+            let thumbnailsResponseContent = new MicrosoftGraph.BatchResponseContent(rawResponse);
+
+            resolve(groups.map(group => group.id !== null ? {...group, thumbnail: thumbnailsResponseContent.getResponseById(group.id).json().body.value, color: "#0078d4"} : group));
+          });
+        });
+      } catch(error) {
+        console.error(error);
       }
     });
   }
