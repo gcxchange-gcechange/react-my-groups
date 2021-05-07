@@ -49,27 +49,27 @@ export class GroupServiceManager {
     });
   }
 
-  public getGroupLinksBatch(groups: IGroup[]): Promise<MicrosoftGraph.Group[]> {
-    let requestBody = new MicrosoftGraph.BatchRequestContent(
-      groups.map( (group) => <MicrosoftGraph.BatchRequestStep>{
-        id: group.id,
-        request: new Request(`/groups/${group.id}/sites/root/weburl`, {
-          method: "GET"
-        })
-      })
-    );
+  public getGroupLinksBatch(groups: IGroup[]): Promise<any> {
 
-    return new Promise<MicrosoftGraph.Group[]>((resolve, reject) => {
+    let requestBody = { requests: [] };
+    requestBody.requests = groups.map( (group) => ({
+      id: group.id,
+      method: "GET",
+      url: `/groups/${group.id}/sites/root/weburl`
+    }));
+
+    return new Promise<any>((resolve, reject) => {
       try {
         this.context.msGraphClientFactory
         .getClient()
         .then((client: MSGraphClient) => {
           client
           .api(`/$batch`)
-          .post( requestBody.getContent(), (error: any, rawResponse: any) => {
-            let linksResponseContent = new MicrosoftGraph.BatchResponseContent(rawResponse);
+          .post( requestBody, (error: any, responseObject: any) => {
+            let linksResponseContent = {};
+            responseObject.responses.forEach( response => linksResponseContent[response.id] = response.body.value );
 
-            resolve(groups.map(group => group.id !== null ? {...group, url: linksResponseContent.getResponseById(group.id).json().body.value} : group));
+            resolve(linksResponseContent);
           });
         });
       } catch(error) {
@@ -88,8 +88,7 @@ export class GroupServiceManager {
           .api(`/groups/${groups.id}/members/$count?ConsistencyLevel=eventual`)
           .get((error: any, group: any, rawResponse: any) => {
             resolve(group);
-            console.log("MEMBERS "+JSON.stringify(group))
-
+            console.log("MEMBERS "+JSON.stringify(group));
           });
         });
       } catch(error) {
@@ -98,27 +97,27 @@ export class GroupServiceManager {
     });
   }
 
-  public getGroupMembersBatch(groups: IGroup[]): Promise<MicrosoftGraph.Group[]> {
-    let requestBody = new MicrosoftGraph.BatchRequestContent(
-      groups.map( (group) => <MicrosoftGraph.BatchRequestStep>{
-        id: group.id,
-        request: new Request(`/groups/${group.id}/members/$count?ConsistencyLevel=eventual`, {
-          method: "GET"
-        })
-      })
-    );
+  public getGroupMembersBatch(groups: IGroup[]): Promise<any> {
 
-    return new Promise<MicrosoftGraph.Group[]>((resolve, reject) => {
+    let requestBody = { requests: [] };
+    requestBody.requests = groups.map( (group) => ({
+      id: group.id,
+      method: "GET",
+      url: `/groups/${group.id}/members/$count?ConsistencyLevel=eventual`
+    }));
+
+    return new Promise<any>((resolve, reject) => {
       try {
         this.context.msGraphClientFactory
         .getClient()
         .then((client: MSGraphClient) => {
           client
           .api(`/$batch`)
-          .post( requestBody.getContent(), (error: any, rawResponse: any) => {
-            let membersResponseContent = new MicrosoftGraph.BatchResponseContent(rawResponse);
+          .post( requestBody, (error: any, responseObject: any) => {
+            let membersResponseContent = {};
+            responseObject.responses.forEach( response => membersResponseContent[response.id] = response.body );
 
-            resolve(groups.map(group => group.id !== null ? {...group, members: membersResponseContent.getResponseById(group.id).json().body.value} : group));
+            resolve(membersResponseContent);
           });
         });
       } catch(error) {
@@ -146,27 +145,27 @@ export class GroupServiceManager {
     });
   }
 
-  public getGroupThumbnailsBatch(groups: IGroup[]): Promise<MicrosoftGraph.Group[]> {
-    let requestBody = new MicrosoftGraph.BatchRequestContent(
-      groups.map( (group) => <MicrosoftGraph.BatchRequestStep>{
-        id: group.id,
-        request: new Request(`/groups/${group.id}/photos/48x48/$value`, {
-          method: "GET"
-        })
-      })
-    );
+  public getGroupThumbnailsBatch(groups: IGroup[]): Promise<any> {
 
-    return new Promise<MicrosoftGraph.Group[]>((resolve, reject) => {
+    let requestBody = { requests: [] };
+    requestBody.requests = groups.map( (group) => ({
+      id: group.id,
+      method: "GET",
+      url: `/groups/${group.id}/photos/48x48/$value`
+    }));
+
+    return new Promise<any>((resolve, reject) => {
       try {
         this.context.msGraphClientFactory
         .getClient()
         .then((client: MSGraphClient) => {
           client
           .api(`/$batch`)
-          .post( requestBody.getContent(), (error: any, rawResponse: any) => {
-            let thumbnailsResponseContent = new MicrosoftGraph.BatchResponseContent(rawResponse);
+          .post( requestBody, (error: any, responseObject: any) => {
+            let thumbnailsResponseContent = {};
+            responseObject.responses.forEach( response => thumbnailsResponseContent[response.id] = response.body );
 
-            resolve(groups.map(group => group.id !== null ? {...group, thumbnail: thumbnailsResponseContent.getResponseById(group.id).json().body.value, color: "#0078d4"} : group));
+            resolve(thumbnailsResponseContent);
           });
         });
       } catch(error) {
