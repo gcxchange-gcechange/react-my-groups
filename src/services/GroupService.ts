@@ -49,6 +49,35 @@ export class GroupServiceManager {
     });
   }
 
+  public getGroupLinksBatch(groups: IGroup[]): Promise<any> {
+
+    let requestBody = { requests: [] };
+    requestBody.requests = groups.map( (group) => ({
+      id: group.id,
+      method: "GET",
+      url: `/groups/${group.id}/sites/root/weburl`
+    }));
+
+    return new Promise<any>((resolve, reject) => {
+      try {
+        this.context.msGraphClientFactory
+        .getClient()
+        .then((client: MSGraphClient) => {
+          client
+          .api(`/$batch`)
+          .post( requestBody, (error: any, responseObject: any) => {
+            let linksResponseContent = {};
+            responseObject.responses.forEach( response => linksResponseContent[response.id] = response.body.value );
+
+            resolve(linksResponseContent);
+          });
+        });
+      } catch(error) {
+        console.error(error);
+      }
+    });
+  }
+
   public getGroupMembers(groups: IGroup): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       try {
@@ -59,8 +88,36 @@ export class GroupServiceManager {
           .api(`/groups/${groups.id}/members/$count?ConsistencyLevel=eventual`)
           .get((error: any, group: any, rawResponse: any) => {
             resolve(group);
-            console.log("MEMBERS "+JSON.stringify(group))
+            console.log("MEMBERS "+JSON.stringify(group));
+          });
+        });
+      } catch(error) {
+        console.error(error);
+      }
+    });
+  }
 
+  public getGroupMembersBatch(groups: IGroup[]): Promise<any> {
+
+    let requestBody = { requests: [] };
+    requestBody.requests = groups.map( (group) => ({
+      id: group.id,
+      method: "GET",
+      url: `/groups/${group.id}/members/$count?ConsistencyLevel=eventual`
+    }));
+
+    return new Promise<any>((resolve, reject) => {
+      try {
+        this.context.msGraphClientFactory
+        .getClient()
+        .then((client: MSGraphClient) => {
+          client
+          .api(`/$batch`)
+          .post( requestBody, (error: any, responseObject: any) => {
+            let membersResponseContent = {};
+            responseObject.responses.forEach( response => membersResponseContent[response.id] = response.body );
+
+            resolve(membersResponseContent);
           });
         });
       } catch(error) {
@@ -84,6 +141,35 @@ export class GroupServiceManager {
         });
       } catch(error) {
         console.error("ERROR "+error);
+      }
+    });
+  }
+
+  public getGroupThumbnailsBatch(groups: IGroup[]): Promise<any> {
+
+    let requestBody = { requests: [] };
+    requestBody.requests = groups.map( (group) => ({
+      id: group.id,
+      method: "GET",
+      url: `/groups/${group.id}/photos/48x48/$value`
+    }));
+
+    return new Promise<any>((resolve, reject) => {
+      try {
+        this.context.msGraphClientFactory
+        .getClient()
+        .then((client: MSGraphClient) => {
+          client
+          .api(`/$batch`)
+          .post( requestBody, (error: any, responseObject: any) => {
+            let thumbnailsResponseContent = {};
+            responseObject.responses.forEach( response => thumbnailsResponseContent[response.id] = response.body );
+
+            resolve(thumbnailsResponseContent);
+          });
+        });
+      } catch(error) {
+        console.error(error);
       }
     });
   }
