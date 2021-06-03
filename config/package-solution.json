@@ -3,14 +3,14 @@
   "solution": {
     "name": "My Communities",
     "id": "da7eafe2-f2ec-486f-99d8-d36fba06a2bf",
-    "version": "1.0.0.3",
+    "version": "1.0.0.0",
     "includeClientSideAssets": true,
     "isDomainIsolated": false,
     "skipFeatureDeployment": true,
     "webApiPermissionRequests": [
       {
         "resource": "Microsoft Graph",
-        "scope": "Group.ReadWrite.All"
+        "scope": "Group.Read.All"
       },
       {
         "resource": "Microsoft Graph",
