@@ -1,6 +1,0 @@
-<testsuites name="jest tests" tests="1" failures="0" time="3.641">
-  <testsuite name="List Layout basic render test" errors="0" failures="0" skipped="0" timestamp="2021-06-16T14:29:01" time="2.538" tests="1">
-    <testcase classname="List Layout basic render test should render even if empty" name="List Layout basic render test should render even if empty" time="0.047">
-    </testcase>
-  </testsuite>
-</testsuites>
