@@ -12,4 +12,5 @@ export interface IReactMyGroupsProps {
   toggleSeeAll: boolean;
   spHttpClient: SPHttpClient;
   themeVariant: IReadonlyTheme | undefined;
+  prefLang: string;
 }

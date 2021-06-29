@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for ListLayout.tsx</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="prettify.css" />
+    <link rel="stylesheet" href="base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="index.html">All files</a> ListLayout.tsx
+    </h1>
+    <div class='clearfix'>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as React from 'react';
+import styles from './ListLayout.module.scss';
+&nbsp;
+// Used to render list grid
+import { FocusZone } from 'office-ui-fabric-react/lib/FocusZone';
+import { List } from 'office-ui-fabric-react/lib/List';
+import { IRectangle, ISize } from 'office-ui-fabric-react/lib/Utilities';
+import { Spinner } from 'office-ui-fabric-react';
+&nbsp;
+import { IListLayoutProps, IListLayoutState } from './ListLayout.types';
+&nbsp;
+const ROWS_PER_PAGE: number = +styles.rowsPerPage;
+const MAX_ROW_HEIGHT: number = +styles.maxWidth;
+const PADDING: number = +styles.padding;
+const MIN_WIDTH: number = +styles.minWidth;
+const COMPACT_THRESHOLD: number = +styles.compactThreshold;
+&nbsp;
+&nbsp;
+export class ListLayout extends React.Component&lt;IListLayoutProps, IListLayoutState&gt; {
+  constructor(props: IListLayoutProps) {
+    super(props);
+    this.state = {
+      isLoading: true
+    };
+  }
+  private _columnCount: number;
+  private _columnWidth: number;
+  private _rowHeight: number;
+  private _isCompact: boolean;
+&nbsp;
+  public render(): React.ReactElement&lt;IListLayoutProps&gt; {
+&nbsp;
+    return (
+      &lt;div role="group" aria-label={this.props.ariaLabel}&gt;
+         &lt;FocusZone&gt;
+          &lt;List
+            role="presentation"
+            className={styles.listLayout}
+            items={this.props.items}
+            getItemCountForPage={this._getItemCountForPage}
+            getPageHeight={this._getPageHeight}
+            onRenderCell={this._onRenderCell}
+            {...this.props.listProps}
+          /&gt;
+        &lt;/FocusZone&gt;
+      &lt;/div&gt;
+    );
+  }
+&nbsp;
+  public componentDidMount = (): void =&gt; {
+  }
+&nbsp;
+  private _getItemCountForPage = <span class="fstat-no" title="function not covered" >(</span>itemIndex: number, surfaceRect: IRectangle): number =&gt; {
+<span class="cstat-no" title="statement not covered" >    if (itemIndex === 0) {</span>
+<span class="cstat-no" title="statement not covered" >      this._isCompact = surfaceRect.width &lt; COMPACT_THRESHOLD;</span>
+<span class="cstat-no" title="statement not covered" >      if (this._isCompact) {</span>
+<span class="cstat-no" title="statement not covered" >        this._columnCount = 1;</span>
+<span class="cstat-no" title="statement not covered" >        this._columnWidth = surfaceRect.width;</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        this._columnCount = Math.ceil(surfaceRect.width / (MAX_ROW_HEIGHT));</span>
+<span class="cstat-no" title="statement not covered" >        this._columnWidth = Math.max(MIN_WIDTH, Math.floor(surfaceRect.width / this._columnCount) + Math.floor(PADDING / this._columnCount));</span>
+<span class="cstat-no" title="statement not covered" >        this._rowHeight = this._columnWidth;</span>
+      }
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return this._columnCount * ROWS_PER_PAGE;</span>
+  }
+&nbsp;
+  private _getPageHeight = <span class="fstat-no" title="function not covered" >(): number =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    return this._rowHeight * ROWS_PER_PAGE;</span>
+  }
+&nbsp;
+  private _onRenderCell = <span class="fstat-no" title="function not covered" >(</span>item: any, index: number | undefined): JSX.Element =&gt; {
+   // console.log(item.displayName);    
+    const isCompact: boolean = <span class="cstat-no" title="statement not covered" >this._isCompact;</span>
+    const cellPadding: number = <span class="cstat-no" title="statement not covered" >index % this._columnCount !== this._columnCount - 1 &amp;&amp; !isCompact ? PADDING : 0;</span>
+    const finalSize: ISize = <span class="cstat-no" title="statement not covered" >{ width: this._columnWidth, height: this._rowHeight };</span>
+    const cellWidth: number = <span class="cstat-no" title="statement not covered" >isCompact ? this._columnWidth + PADDING : this._columnWidth - PADDING;</span>
+    let _totalPages = <span class="cstat-no" title="statement not covered" >Math.ceil(item.length / 2);</span>
+<span class="cstat-no" title="statement not covered" >    return (</span>
+      &lt;div
+        style={{
+          width: `${cellWidth}px`,
+          marginRight: `${cellPadding}px`
+        }}
+      &gt;
+          {this.props.onRenderListItem(item, finalSize, isCompact)}
+&nbsp;
+      &lt;/div&gt;
+    );
+  }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Jun 16 2021 10:29:04 GMT-0400 (Eastern Daylight Time)
+</div>
+</div>
+<script src="prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="sorter.js"></script>
+</body>
+</html>

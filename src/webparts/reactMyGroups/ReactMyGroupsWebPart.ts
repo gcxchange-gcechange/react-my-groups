@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDom from 'react-dom';
 import { Version } from '@microsoft/sp-core-library';
 import { BaseClientSideWebPart } from "@microsoft/sp-webpart-base";
-import { IPropertyPaneConfiguration, PropertyPaneTextField, PropertyPaneChoiceGroup, PropertyPaneToggle } from "@microsoft/sp-property-pane";
+import { IPropertyPaneConfiguration, PropertyPaneTextField, PropertyPaneChoiceGroup, PropertyPaneToggle, PropertyPaneDropdown } from "@microsoft/sp-property-pane";
 import GroupService from '../../services/GroupService';
 import * as strings from 'ReactMyGroupsWebPartStrings';
 import { ReactMyGroups, IReactMyGroupsProps } from './components';
@@ -18,6 +18,7 @@ export interface IReactMyGroupsWebPartProps {
   toggleSeeAll: boolean;
   numberPerPage: number;
   themeVariant: IReadonlyTheme | undefined;
+  prefLang: string;
 }
 
 export default class ReactMyGroupsWebPart extends BaseClientSideWebPart<IReactMyGroupsWebPartProps> {
@@ -37,7 +38,8 @@ export default class ReactMyGroupsWebPart extends BaseClientSideWebPart<IReactMy
         numberPerPage: this.properties.numberPerPage,
         toggleSeeAll: this.properties.toggleSeeAll,
         spHttpClient: this.context.spHttpClient,
-        themeVariant: this._themeVariant
+        themeVariant: this._themeVariant,
+        prefLang: this.properties.prefLang,
       }
     );
 
@@ -97,6 +99,13 @@ export default class ReactMyGroupsWebPart extends BaseClientSideWebPart<IReactMy
           groups: [
             {
               groupFields: [
+                PropertyPaneDropdown('prefLang', {
+                  label: 'Preferred Language',
+                  options: [
+                    { key: 'account', text: 'Account' },
+                    { key: 'en-us', text: 'English' },
+                    { key: 'fr-fr', text: 'Français' }
+                  ]}),
                 PropertyPaneTextField('seeAllLink', {
                   label: strings.seeAllLink
                 }),
