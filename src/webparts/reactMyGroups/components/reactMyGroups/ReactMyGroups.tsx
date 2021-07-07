@@ -7,10 +7,11 @@ import { GroupList } from '../GroupList';
 import { Spinner, ISize } from 'office-ui-fabric-react';
 import { GridLayout } from '../GridList';
 import { ListLayout } from '../ListLayout';
-import * as strings from 'ReactMyGroupsWebPartStrings';
+//import * as strings from 'ReactMyGroupsWebPartStrings';
 import { IReadonlyTheme } from '@microsoft/sp-component-base';
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import { Paging } from '../../components/paging';
+import { SelectLanguage } from '../SelectLanguage';
 
 export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMyGroupsState> {
 
@@ -26,6 +27,8 @@ export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMy
       pageSeeAll: false
     };
   }
+
+  public strings = SelectLanguage(this.props.prefLang);
 
   public render(): React.ReactElement<IReactMyGroupsProps> {
     let myData=[];
@@ -54,11 +57,11 @@ export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMy
 
     return (
       <div className={styles.reactMyGroups} style={{ backgroundColor: semanticColors.bodyBackground }}>
-        <div className={styles.title} role="heading" aria-level={2}>{(strings.userLang == "FR" ? this.props.titleFr :this.props.titleEn )} </div>
-        <div className={styles.seeAll}>{this.props.toggleSeeAll == false && <a aria-label={strings.seeAllLabel} href={this.props.seeAllLink}>{strings.seeAll}</a>}</div>
-        <div className={styles.createComm}><Icon iconName="Add" className={styles.addIcon} /><a href={this.props.createCommLink}>{strings.createComm}</a></div>
+        <div className={styles.title} role="heading" aria-level={2}>{(this.strings.userLang == "FR" ? this.props.titleFr :this.props.titleEn )} </div>
+        <div className={styles.seeAll}>{this.props.toggleSeeAll == false && <a aria-label={this.strings.seeAllLabel} href={this.props.seeAllLink}>{this.strings.seeAll}</a>}</div>
+        <div className={styles.createComm}><Icon iconName="Add" className={styles.addIcon} /><a href={this.props.createCommLink}>{this.strings.createComm}</a></div>
           {this.state.isLoading ?
-    <Spinner label={strings.loadingState} />
+    <Spinner label={this.strings.loadingState} />
     :
     <div>
     <div className={styles.groupsContainer}>
@@ -78,8 +81,8 @@ export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMy
                       itemsCountPerPage={20}
                       totalItems={totalItems}
                       onPageUpdate={this._onPageUpdate}
-                      nextButtonLabel={strings.pagNext}
-                      previousButtonLabel={strings.pagPrev}
+                      nextButtonLabel={this.strings.pagNext}
+                      previousButtonLabel={this.strings.pagPrev}
                     />
                   </div> : ""
                   }
@@ -145,7 +148,7 @@ export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMy
       <div className={styles.compactContainer}>
         <a className={styles.compactA} href={item.url}>
           <div className={styles.compactWrapper}>
-            <img className={styles.compactBanner} src={item.thumbnail} alt={`${strings.altImgLogo} ${item.displayName}`}/>
+            <img className={styles.compactBanner} src={item.thumbnail} alt={`${this.strings.altImgLogo} ${item.displayName}`}/>
             <div className={styles.compactDetails}>
               <div className={styles.compactTitle}>{item.displayName}</div>
             </div>
@@ -162,7 +165,7 @@ export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMy
       <a href={item.url}>
         <div className={styles.cardBanner}>
           <div className={styles.topBanner} style={{backgroundColor: item.color}}></div>
-          <img className={styles.bannerImg} src={item.thumbnail} alt={`${strings.altImgLogo} ${item.displayName}`} />
+          <img className={styles.bannerImg} src={item.thumbnail} alt={`${this.strings.altImgLogo} ${item.displayName}`} />
           <div className={styles.cardTitle}>{item.displayName}</div>
         </div>
       </a>
@@ -177,12 +180,12 @@ export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMy
         <a className="community-list-item" href={item.url}>
            <div className={styles.cardBannerList}>
                 <div className={styles.articleFlex} style={{'width':'60px'}}>
-                   <img className={styles.bannerImgList} src={item.thumbnail} alt={`${strings.altImgLogo} ${item.displayName}`} />
+                   <img className={styles.bannerImgList} src={item.thumbnail} alt={`${this.strings.altImgLogo} ${item.displayName}`} />
                 </div>
                 <div className={`${styles.articleFlex} ${styles.secondSection}`}>
                   <div className={styles.cardTitleList}>{item.displayName}</div>
                   <div className={styles.cardDescription}>{item.description}</div>
-                <div className={styles.members}>{item.members} {strings.members}</div>
+                <div className={styles.members}>{item.members} {this.strings.members}</div>
               </div>
               </div>
             </a>
