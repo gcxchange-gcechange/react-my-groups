@@ -19,4 +19,4 @@ steps:
   env:
     PAT: $(PAT)
     REPO_NAME: "react-my-groups"
-  displayName: 'Sync repo
+  displayName: 'Sync repo'
