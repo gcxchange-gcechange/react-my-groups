@@ -4,7 +4,7 @@ import { IReactMyGroupsProps } from './IReactMyGroupsProps';
 import GroupService from '../../../../services/GroupService';
 import { IReactMyGroupsState } from './IReactMyGroupsState';
 import { GroupList } from '../GroupList';
-import { Spinner, ISize } from 'office-ui-fabric-react';
+import { Spinner, ISize, imgProperties } from 'office-ui-fabric-react';
 import { GridLayout } from '../GridList';
 import { ListLayout } from '../ListLayout';
 //import * as strings from 'ReactMyGroupsWebPartStrings';
@@ -59,7 +59,7 @@ export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMy
       <div className={styles.reactMyGroups} style={{ backgroundColor: semanticColors.bodyBackground }}>
         <div className={styles.title} role="heading" aria-level={2}>{(this.strings.userLang == "FR" ? this.props.titleFr :this.props.titleEn )} </div>
         <div className={styles.seeAll}>{this.props.toggleSeeAll == false && <a aria-label={this.strings.seeAllLabel} href={this.props.seeAllLink}>{this.strings.seeAll}</a>}</div>
-        <div className={styles.createComm}><Icon iconName="Add" className={styles.addIcon} /><a href={this.props.createCommLink}>{this.strings.createComm}</a></div>
+        {/* <div className={styles.createComm}><Icon iconName="Add" className={styles.addIcon} /><a href={this.props.createCommLink}>{this.strings.createComm}</a></div> */}
           {this.state.isLoading ?
     <Spinner label={this.strings.loadingState} />
     :
@@ -104,12 +104,16 @@ export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMy
 
   public _getGroups = (): void => {
     GroupService.getGroups().then(groups => {
+      console.log("GROUPS - 1", groups);
+
       this.setState({
         groups: groups
       });
+
       this._getGroupLinks(groups);
     });
   }
+
 
   public _getGroupLinks = (groups: any): void => {
     GroupService.getGroupLinksBatch(groups).then(groupUrls => {

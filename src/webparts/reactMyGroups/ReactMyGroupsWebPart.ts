@@ -73,10 +73,11 @@ export default class ReactMyGroupsWebPart extends BaseClientSideWebPart<IReactMy
   protected onDispose(): void {
     ReactDom.unmountComponentAtNode(this.domElement);
   }
-
-  protected get dataVersion(): Version {
+//@ts-ignore
+  protected get dataVersion() : Version {
     return Version.parse('1.0');
   }
+
 
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
     const { layout }  = this.properties;
@@ -86,12 +87,12 @@ export default class ReactMyGroupsWebPart extends BaseClientSideWebPart<IReactMy
           numberPerPageOption = PropertyPaneTextField('numberPerPage', {
             label: strings.setPageNum,
             disabled: true
-          })
+          });
         } else {
           numberPerPageOption =   PropertyPaneTextField('numberPerPage', {
             label: strings.setPageNum,
             disabled: false
-          })
+          });
         }
     return {
       pages: [

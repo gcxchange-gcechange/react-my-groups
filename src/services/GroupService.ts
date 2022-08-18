@@ -3,6 +3,7 @@ import * as MicrosoftGraph from "@microsoft/microsoft-graph-types";
 import { WebPartContext } from "@microsoft/sp-webpart-base";
 import { IGroup, IGroupCollection } from "../models";
 import { GraphRequest } from "@microsoft/microsoft-graph-client";
+import { TagItem } from "office-ui-fabric-react";
 
 
 export class GroupServiceManager {
@@ -11,17 +12,30 @@ export class GroupServiceManager {
   public setup(context: WebPartContext): void {
     this.context = context;
   }
+//Get all of the Grooups  and add to Group Collection
 
   public getGroups(): Promise<MicrosoftGraph.Group[]> {
     return new Promise<MicrosoftGraph.Group[]>((resolve, reject) => {
       try {
+        let allGroups: Array<IGroup> = new Array<IGroup>();
+
         this.context.msGraphClientFactory
         .getClient()
         .then((client: MSGraphClient) => {
           client
-          .api("/me/memberOf/$/microsoft.graph.group?$filter=groupTypes/any(a:a eq 'unified')")
+          .api("/groups/$/microsoft.graph.group?$filter=groupTypes/any(a:a eq 'unified')")
+          //.api("/me/memberOf/$/microsoft.graph.group?$filter=groupTypes/any(a:a eq 'unified')")
           .get((error: any, groups: IGroupCollection, rawResponse: any) => {
-           // console.log("GROUP "+JSON.stringify(groups))
+           console.log("MY GROUPS "+JSON.stringify(groups));
+
+           groups.value.map((item: any) => {
+            allGroups.push({
+              id: item.id,
+              displayName: item.displayName,
+              description: item.description
+            });
+           });
+           console.log("GROUPS MAP", allGroups);
             resolve(groups.value);
           });
         });
@@ -29,9 +43,11 @@ export class GroupServiceManager {
         console.error("ERROR-"+error);
       }
     });
+
   }
 
   public getGroupLinks(groups: IGroup): Promise<any> {
+
     return new Promise<any>((resolve, reject) => {
       try {
         this.context.msGraphClientFactory
@@ -40,6 +56,7 @@ export class GroupServiceManager {
           client
           .api(`/groups/${groups.id}/sites/root/weburl`)
           .get((error: any, group: any, rawResponse: any) => {
+            console.log("GROUPLINKS",JSON.stringify(group));
             resolve(group);
           });
         });
@@ -68,7 +85,7 @@ export class GroupServiceManager {
           .post( requestBody, (error: any, responseObject: any) => {
             let linksResponseContent = {};
             responseObject.responses.forEach( response => linksResponseContent[response.id] = response.body.value );
-
+            console.log("RESPONSE BATCH", linksResponseContent);
             resolve(linksResponseContent);
           });
         });
@@ -103,7 +120,7 @@ export class GroupServiceManager {
     requestBody.requests = groups.map( (group) => ({
       id: group.id,
       method: "GET",
-      url: `/groups/${group.id}/members/$count?ConsistencyLevel=eventual`
+      url: `/groups/${group.id}/members/$count?ConsistencyLevel=eventual`,
     }));
 
     return new Promise<any>((resolve, reject) => {
@@ -151,7 +168,7 @@ export class GroupServiceManager {
     requestBody.requests = groups.map( (group) => ({
       id: group.id,
       method: "GET",
-      url: `/groups/${group.id}/photos/48x48/$value`
+      url: `/groups/${group.id}/photos/48x48/$value`,
     }));
 
     return new Promise<any>((resolve, reject) => {

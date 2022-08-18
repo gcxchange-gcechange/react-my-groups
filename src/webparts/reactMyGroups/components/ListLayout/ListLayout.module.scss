@@ -55,10 +55,11 @@
 
   :global(.ms-List-cell) {
     vertical-align: top;
-    display: inline-block;
+    //display: inline-block;
+    display: flex;
     margin-bottom: 10px;
     padding-bottom: 10px;
     border-bottom: 1px solid #edebe9;
-    
+
   }
 }
