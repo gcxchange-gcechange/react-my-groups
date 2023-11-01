@@ -134,7 +134,7 @@ export class GroupServiceManager {
         .then((client: MSGraphClientV3) => {
           client
           .api(`/groups/${groups.id}/photos/48x48/$value`)
-          .responseType('blob')
+          //.responseType('blob')
           .get((error: any, group: any, rawResponse: any) => {
             resolve(window.URL.createObjectURL(group));
           });

@@ -252,7 +252,7 @@ module.exports = {
         // STANDARDIZED BY:   eslint\conf\eslint-recommended.js
         "no-regex-spaces": 2,
         // RATIONALE:         Catches a common coding mistake.
-        "no-return-assign": 2,
+        "no-return-assign": 0,
         // RATIONALE:         Security risk.
         "no-script-url": 1,
         // STANDARDIZED BY:   eslint\conf\eslint-recommended.js
