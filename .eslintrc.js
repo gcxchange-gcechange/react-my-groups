@@ -281,7 +281,7 @@ module.exports = {
         // STANDARDIZED BY:   eslint\conf\eslint-recommended.js
         "no-unsafe-finally": 2,
         // RATIONALE:         Catches a common coding mistake.
-        "no-unused-expressions": 1,
+        "no-unused-expressions": 0,
         // STANDARDIZED BY:   eslint\conf\eslint-recommended.js
         "no-unused-labels": 1,
         // STANDARDIZED BY:   eslint\conf\eslint-recommended.js

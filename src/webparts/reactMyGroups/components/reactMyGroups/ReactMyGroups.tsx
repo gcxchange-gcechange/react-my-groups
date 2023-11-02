@@ -32,10 +32,9 @@ export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMy
 
   public render(): React.ReactElement<IReactMyGroupsProps> {
     let myData=[];
-    (this.props.sort == "DateCreation") ?  myData = [].concat(this.state.groups).sort((a, b) => a.createdDateTime < b.createdDateTime ? 1 : -1) : myData = [].concat(this.state.groups).sort((a, b) => a.displayName < b.displayName ? 1 : -1);
+    (this.props.sort === "DateCreation") ?  myData = [].concat(this.state.groups).sort((a, b) => a.createdDateTime < b.createdDateTime ? 1 : -1) : myData = [].concat(this.state.groups).sort((a, b) => a.displayName < b.displayName ? 1 : -1);
     let pagedItems: any[] = myData;
     const totalItems: number = pagedItems.length;
-    let showPages: boolean = false;
 
     let maxEvents: number = this.props.numberPerPage;
     const { currentPage } = this.state;
@@ -50,25 +49,24 @@ export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMy
       const pageEndAt: number = (maxEvents * currentPage);
 
       pagedItems = pagedItems.slice(pageStartAt, pageEndAt);
-      showPages = true;
     }
 
     const { semanticColors }: IReadonlyTheme = this.props.themeVariant;
 
     return (
       <div className={styles.reactMyGroups} style={{ backgroundColor: semanticColors.bodyBackground }}>
-        <div className={styles.title} role="heading" aria-level={2}>{(this.strings.userLang == "FR" ? this.props.titleFr :this.props.titleEn )} </div>
-        <div className={styles.seeAll}>{this.props.toggleSeeAll == false && <a aria-label={this.strings.seeAllLabel} href={this.props.seeAllLink}>{this.strings.seeAll}</a>}</div>
+        <div className={styles.title} role="heading" aria-level={2}>{(this.strings.userLang === "FR" ? this.props.titleFr :this.props.titleEn )} </div>
+        <div className={styles.seeAll}>{this.props.toggleSeeAll === false && <a aria-label={this.strings.seeAllLabel} href={this.props.seeAllLink}>{this.strings.seeAll}</a>}</div>
         <div className={styles.createComm}><Icon iconName="Add" className={styles.addIcon} /><a href={this.props.createCommLink}>{this.strings.createComm}</a></div>
           {this.state.isLoading ?
     <Spinner label={this.strings.loadingState} />
     :
     <div>
     <div className={styles.groupsContainer}>
-      {this.props.layout == 'Compact' ?
+      {this.props.layout === 'Compact' ?
         <GroupList groups={pagedItems} onRenderItem={(item: any, index: number) => this._onRenderItem(item, index)}/>
       :
-        this.props.layout == 'Grid' ?
+        this.props.layout === 'Grid' ?
         <GridLayout sort={this.props.sort} items={pagedItems} onRenderGridItem={(item: any, finalSize: ISize, isCompact: boolean) => this._onRenderGridItem(item, finalSize, isCompact)}/>
         :
           <ListLayout sort={this.props.sort} items={pagedItems} onRenderListItem={(item: any, finalSize: ISize, isCompact: boolean) => this._onRenderListItem(item, finalSize, isCompact)}/>

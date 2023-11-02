@@ -1,8 +1,7 @@
-import { AadHttpClient, MSGraphClientV3 } from "@microsoft/sp-http";
+import { MSGraphClientV3 } from "@microsoft/sp-http";
 import * as MicrosoftGraph from "@microsoft/microsoft-graph-types";
 import { WebPartContext } from "@microsoft/sp-webpart-base";
 import { IGroup, IGroupCollection } from "../models";
-import { GraphRequest } from "@microsoft/microsoft-graph-client";
 
 
 export class GroupServiceManager {
