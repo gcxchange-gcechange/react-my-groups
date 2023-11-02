@@ -51,7 +51,7 @@ export class GroupServiceManager {
 
   public getGroupLinksBatch(groups: IGroup[]): Promise<any> {
 
-    let requestBody = { requests: [] };
+    const requestBody = { requests: [] };
     requestBody.requests = groups.map( (group) => ({
       id: group.id,
       method: "GET",
@@ -66,7 +66,7 @@ export class GroupServiceManager {
           client
           .api(`/$batch`)
           .post( requestBody, (error: any, responseObject: any) => {
-            let linksResponseContent = {};
+            const linksResponseContent = {};
             responseObject.responses.forEach( response => linksResponseContent[response.id] = response.body.value );
 
             resolve(linksResponseContent);
@@ -99,7 +99,7 @@ export class GroupServiceManager {
 
   public getGroupMembersBatch(groups: IGroup[]): Promise<any> {
 
-    let requestBody = { requests: [] };
+    const requestBody = { requests: [] };
     requestBody.requests = groups.map( (group) => ({
       id: group.id,
       method: "GET",
@@ -114,7 +114,7 @@ export class GroupServiceManager {
           client
           .api(`/$batch`)
           .post( requestBody, (error: any, responseObject: any) => {
-            let membersResponseContent = {};
+            const membersResponseContent = {};
             responseObject.responses.forEach( response => membersResponseContent[response.id] = response.body );
 
             resolve(membersResponseContent);
@@ -147,7 +147,7 @@ export class GroupServiceManager {
 
   public getGroupThumbnailsBatch(groups: IGroup[]): Promise<any> {
 
-    let requestBody = { requests: [] };
+    const requestBody = { requests: [] };
     requestBody.requests = groups.map( (group) => ({
       id: group.id,
       method: "GET",
@@ -162,7 +162,7 @@ export class GroupServiceManager {
           client
           .api(`/$batch`)
           .post( requestBody, (error: any, responseObject: any) => {
-            let thumbnailsResponseContent = {};
+            const thumbnailsResponseContent = {};
             responseObject.responses.forEach( response => thumbnailsResponseContent[response.id] = response.body );
 
             resolve(thumbnailsResponseContent);

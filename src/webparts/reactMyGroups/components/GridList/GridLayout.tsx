@@ -76,7 +76,7 @@ export class GridLayout extends React.Component<IGridLayoutProps, IGridLayoutSta
     const cellPadding: number = index % this._columnCount !== this._columnCount - 1 && !isCompact ? PADDING : 0;
     const finalSize: ISize = { width: this._columnWidth, height: this._rowHeight };
     const cellWidth: number = isCompact ? this._columnWidth + PADDING : this._columnWidth - PADDING;
-    let _totalPages = Math.ceil(item.length / 2);
+    const _totalPages = Math.ceil(item.length / 2);
     return (
       <div
       className={styles.rendergrid}

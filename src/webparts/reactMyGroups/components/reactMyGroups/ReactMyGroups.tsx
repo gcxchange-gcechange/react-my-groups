@@ -37,7 +37,7 @@ export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMy
     const totalItems: number = pagedItems.length;
     let showPages: boolean = false;
 
-    var maxEvents: number = this.props.numberPerPage;
+    let maxEvents: number = this.props.numberPerPage;
     const { currentPage } = this.state;
 
     //if on see all page, only show 20 at the time
@@ -164,7 +164,7 @@ export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMy
       <div className={styles.siteCard}>
       <a href={item.url}>
         <div className={styles.cardBanner}>
-          <div className={styles.topBanner} style={{backgroundColor: item.color}}></div>
+          <div className={styles.topBanner} style={{backgroundColor: item.color}} />
           <img className={styles.bannerImg} src={item.thumbnail} alt={`${this.strings.altImgLogo} ${item.displayName}`} />
           <div className={styles.cardTitle}>{item.displayName}</div>
         </div>
