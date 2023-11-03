@@ -4,7 +4,7 @@ import { Version } from '@microsoft/sp-core-library';
 import { BaseClientSideWebPart } from "@microsoft/sp-webpart-base";
 import { IPropertyPaneConfiguration, PropertyPaneTextField, PropertyPaneChoiceGroup, PropertyPaneToggle, PropertyPaneDropdown } from "@microsoft/sp-property-pane";
 import GroupService from '../../services/GroupService';
-import * as strings from 'ReactMyGroupsWebPartStrings';
+import { SelectLanguage } from "./components/SelectLanguage";
 import { ReactMyGroups, IReactMyGroupsProps } from './components';
 import { ThemeProvider, ThemeChangedEventArgs, IReadonlyTheme } from '@microsoft/sp-component-base';
 
@@ -25,7 +25,9 @@ export default class ReactMyGroupsWebPart extends BaseClientSideWebPart<IReactMy
   private _themeProvider: ThemeProvider;
   private _themeVariant: IReadonlyTheme;
 
-  public render(): void {
+  private strings: IReactMyGroupsWebPartStrings;
+
+   public render(): void {
     const element: React.ReactElement<IReactMyGroupsProps > = React.createElement(
       ReactMyGroups,
       {
@@ -46,7 +48,9 @@ export default class ReactMyGroupsWebPart extends BaseClientSideWebPart<IReactMy
     ReactDom.render(element, this.domElement);
   }
 
-  protected onInit(): Promise<void> {
+  protected async onInit(): Promise<void> {
+    this.strings = SelectLanguage(this.properties.prefLang);
+
     // Consume the new ThemeProvider service
     this._themeProvider = this.context.serviceScope.consume(ThemeProvider.serviceKey);
 
@@ -84,12 +88,12 @@ export default class ReactMyGroupsWebPart extends BaseClientSideWebPart<IReactMy
         // if toggleSeeAll is true desable numberperpage
         if (this.properties.toggleSeeAll) {
           numberPerPageOption = PropertyPaneTextField('numberPerPage', {
-            label: strings.setPageNum,
+            label: this.strings.setPageNum,
             disabled: true
           })
         } else {
           numberPerPageOption =   PropertyPaneTextField('numberPerPage', {
-            label: strings.setPageNum,
+            label: this.strings.setPageNum,
             disabled: false
           })
         }
@@ -105,63 +109,65 @@ export default class ReactMyGroupsWebPart extends BaseClientSideWebPart<IReactMy
                     { key: 'account', text: 'Account' },
                     { key: 'en-us', text: 'English' },
                     { key: 'fr-fr', text: 'Français' }
-                  ]}),
+                  ],
+                  selectedKey: this.strings.userLang,
+                }),
                 PropertyPaneTextField('seeAllLink', {
-                  label: strings.seeAllLink
+                  label: this.strings.seeAllLink
                 }),
                 PropertyPaneTextField('createCommLink', {
-                  label: strings.createCommLink
+                  label: this.strings.createCommLink
                 }),
                 PropertyPaneTextField('titleEn', {
-                  label: strings.setTitleEn
+                  label: this.strings.setTitleEn
                 }),
                 PropertyPaneTextField('titleFr', {
-                  label: strings.setTitleFr
+                  label: this.strings.setTitleFr
                 }),
                 PropertyPaneToggle('toggleSeeAll', {
                   key: 'toggleSeeAll',
-                  label: strings.seeAllToggle,
+                  label: this.strings.seeAllToggle,
                   checked: false,
-                  onText: strings.seeAllOn,
-                  offText: strings.seeAllOff,
+                  onText: this.strings.seeAllOn,
+                  offText: this.strings.seeAllOff,
                 }),
                 numberPerPageOption,
                 PropertyPaneChoiceGroup("layout", {
-                  label: strings.setLayoutOpt,
+                  label: this.strings.setLayoutOpt,
                   options: [
                     {
                       key: "Grid",
-                      text: strings.gridIcon,
+                      text: this.strings.gridIcon,
                       iconProps: { officeFabricIconFontName: "GridViewSmall"},
                       checked: layout === "Grid" ? true : false,
 
                     },
                     {
                       key: "Compact",
-                      text: strings.compactIcon,
+                      text: this.strings.compactIcon,
                       iconProps: { officeFabricIconFontName: "BulletedList2"},
                       checked: layout === "Compact" ? true : false
                     },
                     {
                       key: "List",
-                      text: strings.ListIcon,
+                      text: this.strings.ListIcon,
                       iconProps: { officeFabricIconFontName: "ViewList"},
                       checked: layout === "List" ? true : false
                     }
                   ]
                 }),
                 PropertyPaneChoiceGroup("sort", {
-                  label: strings.setSortOpt,
+                  label: this.strings.setSortOpt,
                   options: [
                     {
                       key: "DateCreation",
-                      text: strings.dateCreation,
+                      text: this.strings.dateCreation,
                       checked: layout === "DateCreation" ? true : false,
 
                     },
                     {
                       key: "Alphabetical",
-                      text: strings.alphabetical,
+                      text: this.strings.alphabetical,
                       checked: layout === "Alphabetical" ? true : false
                     }
                   ]
