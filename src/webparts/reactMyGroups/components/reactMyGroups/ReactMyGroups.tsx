@@ -29,6 +29,12 @@ export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMy
   }
 
   public strings = SelectLanguage(this.props.prefLang);
+  public async componentDidUpdate (prevProps:IReactMyGroupsProps){
+    if (prevProps.prefLang !== this.props.prefLang) {
+      this.strings = SelectLanguage(this.props.prefLang);
+      await this.props.updateWebPart();
+    }
+  }
 
   public render(): React.ReactElement<IReactMyGroupsProps> {
     let myData=[];

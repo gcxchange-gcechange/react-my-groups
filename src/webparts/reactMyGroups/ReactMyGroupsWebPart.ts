@@ -27,6 +27,11 @@ export default class ReactMyGroupsWebPart extends BaseClientSideWebPart<IReactMy
 
   private strings: IReactMyGroupsWebPartStrings;
 
+  public updateWebPart= async () => {
+    this.context.propertyPane.refresh();
+    this.render();
+  }
+
    public render(): void {
     const element: React.ReactElement<IReactMyGroupsProps > = React.createElement(
       ReactMyGroups,
@@ -42,6 +47,7 @@ export default class ReactMyGroupsWebPart extends BaseClientSideWebPart<IReactMy
         spHttpClient: this.context.spHttpClient,
         themeVariant: this._themeVariant,
         prefLang: this.properties.prefLang,
+        updateWebPart:this.updateWebPart
       }
     );
 

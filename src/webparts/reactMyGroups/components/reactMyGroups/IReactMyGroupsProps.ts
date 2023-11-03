@@ -13,4 +13,5 @@ export interface IReactMyGroupsProps {
   spHttpClient: SPHttpClient;
   themeVariant: IReadonlyTheme | undefined;
   prefLang: string;
+  updateWebPart: ()=>void;
 }
