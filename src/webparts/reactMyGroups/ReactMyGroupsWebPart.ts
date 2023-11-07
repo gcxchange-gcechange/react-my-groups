@@ -89,7 +89,6 @@ export default class ReactMyGroupsWebPart extends BaseClientSideWebPart<IReactMy
   }
 
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
-    const { layout }  = this.properties;
     let numberPerPageOption: any;
         // if toggleSeeAll is true desable numberperpage
         if (this.properties.toggleSeeAll) {
@@ -144,21 +143,17 @@ export default class ReactMyGroupsWebPart extends BaseClientSideWebPart<IReactMy
                     {
                       key: "Grid",
                       text: this.strings.gridIcon,
-                      iconProps: { officeFabricIconFontName: "GridViewSmall"},
-                      checked: layout === "Grid" ? true : false,
-
+                     iconProps: { officeFabricIconFontName: "GridViewSmall"},
                     },
                     {
                       key: "Compact",
                       text: this.strings.compactIcon,
-                      iconProps: { officeFabricIconFontName: "BulletedList2"},
-                      checked: layout === "Compact" ? true : false
+                     iconProps: { officeFabricIconFontName: "BulletedList2"},
                     },
                     {
                       key: "List",
                       text: this.strings.ListIcon,
-                      iconProps: { officeFabricIconFontName: "ViewList"},
-                      checked: layout === "List" ? true : false
+                     iconProps: { officeFabricIconFontName: "ViewList"},
                     }
                   ]
                 }),
@@ -168,13 +163,11 @@ export default class ReactMyGroupsWebPart extends BaseClientSideWebPart<IReactMy
                     {
                       key: "DateCreation",
                       text: this.strings.dateCreation,
-                      checked: layout === "DateCreation" ? true : false,
 
                     },
                     {
                       key: "Alphabetical",
                       text: this.strings.alphabetical,
-                      checked: layout === "Alphabetical" ? true : false
                     }
                   ]
                 })
