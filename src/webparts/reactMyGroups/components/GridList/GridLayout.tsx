@@ -34,7 +34,6 @@ export class GridLayout extends React.Component<IGridLayoutProps, IGridLayoutSta
       <div role="group" aria-label={this.props.ariaLabel}>
          <FocusZone>
           <List
-            role="presentation"
             className={styles.gridLayout}
             items={this.props.items}
             getItemCountForPage={this._getItemCountForPage}

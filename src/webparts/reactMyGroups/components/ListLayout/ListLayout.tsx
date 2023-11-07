@@ -34,7 +34,6 @@ export class ListLayout extends React.Component<IListLayoutProps, IListLayoutSta
       <div role="group" aria-label={this.props.ariaLabel}>
          <FocusZone>
           <List
-            role="presentation"
             className={styles.listLayout}
             items={this.props.items}
             getItemCountForPage={this._getItemCountForPage}
