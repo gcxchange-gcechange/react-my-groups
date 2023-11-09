@@ -28,7 +28,8 @@
         "description": "My Communities",
         "sort": "DateCreation",
         "numberPerPage": 4,
-        "layout":"List"
+        "layout":"List",
+        "toggleSeeAll":false
       }
     }
   ]
