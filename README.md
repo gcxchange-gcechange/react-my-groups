@@ -21,9 +21,9 @@ None.
 
 ## API permission
 Microsoft Graph - User.ReadBasic.All
+Microsoft Graph - Group.Read.All
 
 ## Version 
-
 ![SPFX](https://img.shields.io/badge/SPFX-1.17.4-green.svg)
 ![Node.js](https://img.shields.io/badge/Node.js-v16.3+-green.svg)
 
