@@ -1,25 +1,31 @@
-# Name of the application
+# My Communities
 
 ## Summary
+- Option to show all groups, this will show 20 groups at the time (with pagination).
+- New link available to redirect at a specific page for the creation of the group.
+- You can choose the number group to display in the setting.
+- If the user have more group, see all button will show. In the setting, a input is available for the see all link.
+- Ability to sort by creation date or alphabitical.
+- French as been add.
+- Available in full-with layout.
+- New List style layout available.
+- Using Microsoft Graph, this webpart grabs the Office 365 groups the current user is a member of with links to the groups' SharePoint site.
 
-Short description of what the webpart do. Give the basic information and feature of the app. 
+- The webpart has been updated to include a grid style layout, in addition to the compact layout as seen below:
+- You can change between the grid and compact layout through the settings in the property pane:
 
-_Adding a visualisation is possible. Need to keep in mind that it should only reflect what is provide in the short description. Plus, an short description of the image or animation need to be provide in the alt._
 
 ## Prerequisites
 
-This web part connects to [this function app](https://github.com/gcxchange-gcechange/appsvc-fnc-dev-userstats).
+None.
 
 ## API permission
-List of api permission that need to be approve by a sharepoint admin.
+Microsoft Graph - User.ReadBasic.All
 
 ## Version 
 
-Used SharePoint Framework Webpart or Sharepoint Framework Extension 
-
-![SPFx 1.11](https://img.shields.io/badge/SPFx-1.11-green.svg)
-
-![Node.js v10](https://img.shields.io/badge/Node.js-10.22.0-green.svg)
+![SPFX](https://img.shields.io/badge/SPFX-1.17.4-green.svg)
+![Node.js](https://img.shields.io/badge/Node.js-v16.3+-green.svg)
 
 ## Applies to
 
@@ -34,23 +40,27 @@ Version|Date|Comments
 -------|----|--------
 1.0|Dec 9, 2021|Initial release
 1.1|March 25, 2022|Next release
+1.3|November 10, 2023| Upgraded to SPFX 1.17.
 
 ## Minimal Path to Awesome
-
 - Clone this repository
 - Ensure that you are at the solution folder
 - In the command-line run:
   - **npm install**
-  - **gulp serve**
-- You will need to add your client id and azure function to the `clientId` and `url` classs members at the top of the filename.tsx file.
 - To debug in the front end:
   - go to the `serve.json` file and update `initialPage` to `https://domain-name.sharepoint.com/_layouts/15/workbench.aspx`
-  - Run the command **gulp serve**
-- To deploy: in the command-line run
-  - **gulp bundle --ship**
-  - **gulp package-solution --ship**
+  - In the command-line run:
+    - **npm install**
+- To deploy:
+  - In the command-line run:
+    - **gulp clean**
+    - **gulp bundle --ship**
+    - **gulp package-solution --ship**
 - Add the webpart to your tenant app store
 - Approve the web API permissions
+- Add the Webpart to a page
+- Modify the property pane according to your requirements
+
 
 ## Disclaimer
 
