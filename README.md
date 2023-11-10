@@ -40,7 +40,7 @@ Version|Date|Comments
 -------|----|--------
 1.0|Dec 9, 2021|Initial release
 1.1|March 25, 2022|Next release
-1.3|November 10, 2023| Upgraded to SPFX 1.17.
+1.3|November 10, 2023| Upgraded to SPFX 1.17.4
 
 ## Minimal Path to Awesome
 - Clone this repository
