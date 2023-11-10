@@ -45,18 +45,18 @@ Version|Date|Comments
 ## Minimal Path to Awesome
 - Clone this repository
 - Ensure that you are at the solution folder
-- In the command-line run:
+- To install the dependencies, in the command-line run:
   - **npm install**
 - To debug in the front end:
-  - go to the `serve.json` file and update `initialPage` to `https://domain-name.sharepoint.com/_layouts/15/workbench.aspx`
+  - go to the `serve.json` file and update `initialPage` to `https://your-domain-name.sharepoint.com/_layouts/15/workbench.aspx`
   - In the command-line run:
-    - **npm install**
+    - **gulp serve**
 - To deploy:
   - In the command-line run:
     - **gulp clean**
     - **gulp bundle --ship**
     - **gulp package-solution --ship**
-- Add the webpart to your tenant app store
+    - Add the webpart to your tenant app store
 - Approve the web API permissions
 - Add the Webpart to a page
 - Modify the property pane according to your requirements
