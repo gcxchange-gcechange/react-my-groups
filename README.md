@@ -10,13 +10,11 @@
 - Available in full-with layout.
 - New List style layout available.
 - Using Microsoft Graph, this webpart grabs the Office 365 groups the current user is a member of with links to the groups' SharePoint site.
-
 - The webpart has been updated to include a grid style layout, in addition to the compact layout as seen below:
 - You can change between the grid and compact layout through the settings in the property pane:
 
 
 ## Prerequisites
-
 None.
 
 ## API permission
@@ -28,7 +26,6 @@ Microsoft Graph - Group.Read.All
 ![Node.js](https://img.shields.io/badge/Node.js-v16.3+-green.svg)
 
 ## Applies to
-
 - [SharePoint Framework](https://aka.ms/spfx)
 - [Microsoft 365 tenant](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/set-up-your-developer-tenant)
 
