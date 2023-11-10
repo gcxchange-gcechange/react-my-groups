@@ -56,7 +56,7 @@ Version|Date|Comments
     - **gulp clean**
     - **gulp bundle --ship**
     - **gulp package-solution --ship**
-    - Add the webpart to your tenant app store
+  - Add the webpart to your tenant app store
 - Approve the web API permissions
 - Add the Webpart to a page
 - Modify the property pane according to your requirements
