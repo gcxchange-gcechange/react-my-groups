@@ -10,13 +10,13 @@
 - Able to change between three different layouts through the settings in the property pane.
 - Ability to sort alphabetically or date the group was created.
 
-List Layout:
+### List Layout:
 ![Compact Demo](./assets/React-MyGroups_List.png)
-Compact Layout:
+### Compact Layout:
 ![Compact Demo](./assets/React-MyGroups_Compact.png)
-Grid Layout:
+### Grid Layout:
 ![Compact Demo](./assets/React-MyGroups_Grid.png)
-Settings / Property Pane:
+### Settings / Property Pane:
 ![Compact Demo](./assets/React-MyGroups_Property.png)
 
 
