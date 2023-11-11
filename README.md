@@ -1,17 +1,23 @@
 # My Communities
 
 ## Summary
-- Option to show all groups, this will show 20 groups at the time (with pagination).
-- New link available to redirect at a specific page for the creation of the group.
-- You can choose the number group to display in the setting.
-- If the user have more group, see all button will show. In the setting, a input is available for the see all link.
-- Ability to sort by creation date or alphabitical.
-- French as been add.
-- Available in full-with layout.
-- New List style layout available.
-- Using Microsoft Graph, this webpart grabs the Office 365 groups the current user is a member of with links to the groups' SharePoint site.
-- The webpart has been updated to include a grid style layout, in addition to the compact layout as seen below:
-- You can change between the grid and compact layout through the settings in the property pane:
+- The webpart shows all the SharePoint teams sites (groups) that the current user is a member of with links to the groups' SharePoint sites.
+- Able to change the language (English/French) in the property pane.
+- Option to show all groups in another page by entering the url of the see all page in propety pane, this will show 20 groups at the time (with pagination).
+- Create a community link available to redirect at a specific page for the creation of the new group.
+- You can enter the number of groups to display in the property pane.
+- **If the user have more groups, see all button will show. In the setting, a input is available for the see all link.**
+- Able to change between three different layouts through the settings in the property pane.
+- Ability to sort alphabetically or date the group was created.
+
+List Layout:
+![Compact Demo](./assets/React-MyGroups_List.png)
+Compact Layout:
+![Compact Demo](./assets/React-MyGroups_Compact.png)
+Grid Layout:
+![Compact Demo](./assets/React-MyGroups_Grid.png)
+Settings / Property Pane:
+![Compact Demo](./assets/React-MyGroups_Property.png)
 
 
 ## Prerequisites
