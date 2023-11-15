@@ -3,7 +3,8 @@
 ## Summary
 - The webpart shows all the SharePoint teams sites (groups) that the current user is a member of with links to the groups' SharePoint sites.
 - Able to change the language (English/French) in the property pane.
-- Option to show all groups in another page by entering the url of the see all page in propety pane, this will show 20 groups at the time (with pagination).
+- Option to show all groups, this will show 20 groups at the time (with pagination).
+- Ability to add the url for the See all page.
 - Create a community link available to redirect at a specific page for the creation of the new group.
 - You can enter the number of groups to display in the property pane.
 - **If the user have more groups, see all button will show. In the setting, a input is available for the see all link.**
