@@ -19,10 +19,7 @@ export class GroupList extends React.Component<IGroupListProps, {}> {
 
     return (
       <div role="group">
-        <FocusZone
-          direction={FocusZoneDirection.horizontal}
-          isCircularNavigation={false}
-        >
+          
           <List
             className={styles.compactLayout}
             items={this.props.groups}
@@ -30,7 +27,6 @@ export class GroupList extends React.Component<IGroupListProps, {}> {
             getPageHeight={this._getPageHeight}
             onRenderCell={this._onRenderCell}
           />
-        </FocusZone>
       </div>
     );
   }
