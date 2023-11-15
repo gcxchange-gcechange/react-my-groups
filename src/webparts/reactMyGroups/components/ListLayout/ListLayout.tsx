@@ -32,9 +32,7 @@ export class ListLayout extends React.Component<IListLayoutProps, IListLayoutSta
 
     return (
       <div role="group" aria-label={this.props.ariaLabel}>
-         <FocusZone>
           <List
-            role="presentation"
             className={styles.listLayout}
             items={this.props.items}
             getItemCountForPage={this._getItemCountForPage}
@@ -42,7 +40,6 @@ export class ListLayout extends React.Component<IListLayoutProps, IListLayoutSta
             onRenderCell={this._onRenderCell}
             {...this.props.listProps}
           />
-        </FocusZone>
       </div>
     );
   }

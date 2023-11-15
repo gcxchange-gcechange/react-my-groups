@@ -1,2 +1,2 @@
 export * from './reactMyGroups';
-export * from './GroupList';
+//export * from './GroupList';
