@@ -27,7 +27,7 @@ export default class ReactMyGroupsWebPart extends BaseClientSideWebPart<IReactMy
 
   private strings: IReactMyGroupsWebPartStrings;
 
-  public updateWebPart= async () => {
+  public updateWebPart= async ():Promise<void> => {
     this.context.propertyPane.refresh();
     this.render();
   }
