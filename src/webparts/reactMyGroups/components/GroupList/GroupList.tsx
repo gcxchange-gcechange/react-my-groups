@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IGroupListProps } from './IGroupListProps';
-import { List, FocusZone, FocusZoneDirection } from 'office-ui-fabric-react';
+import { List} from 'office-ui-fabric-react';
 import { IRectangle } from 'office-ui-fabric-react/lib/Utilities';
 import styles from './GroupList.module.scss';
 
@@ -18,8 +18,7 @@ export class GroupList extends React.Component<IGroupListProps, {}> {
   public render(): React.ReactElement<IGroupListProps> {
 
     return (
-      <div role="group">
-          
+      <div role="group">          
           <List
             className={styles.compactLayout}
             items={this.props.groups}

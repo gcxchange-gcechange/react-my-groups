@@ -1,8 +1,7 @@
-import { AadHttpClient, MSGraphClient } from "@microsoft/sp-http";
+import { MSGraphClientV3 } from "@microsoft/sp-http";
 import * as MicrosoftGraph from "@microsoft/microsoft-graph-types";
 import { WebPartContext } from "@microsoft/sp-webpart-base";
 import { IGroup, IGroupCollection } from "../models";
-import { GraphRequest } from "@microsoft/microsoft-graph-client";
 
 
 export class GroupServiceManager {
@@ -16,8 +15,8 @@ export class GroupServiceManager {
     return new Promise<MicrosoftGraph.Group[]>((resolve, reject) => {
       try {
         this.context.msGraphClientFactory
-        .getClient()
-        .then((client: MSGraphClient) => {
+        .getClient('3')
+        .then((client: MSGraphClientV3) => {
           client
           .api("/me/memberOf/$/microsoft.graph.group?$filter=groupTypes/any(a:a eq 'unified')")
           .get((error: any, groups: IGroupCollection, rawResponse: any) => {
@@ -35,8 +34,8 @@ export class GroupServiceManager {
     return new Promise<any>((resolve, reject) => {
       try {
         this.context.msGraphClientFactory
-        .getClient()
-        .then((client: MSGraphClient) => {
+        .getClient('3')
+        .then((client: MSGraphClientV3) => {
           client
           .api(`/groups/${groups.id}/sites/root/weburl`)
           .get((error: any, group: any, rawResponse: any) => {
@@ -51,7 +50,7 @@ export class GroupServiceManager {
 
   public getGroupLinksBatch(groups: IGroup[]): Promise<any> {
 
-    let requestBody = { requests: [] };
+    const requestBody = { requests: [] };
     requestBody.requests = groups.map( (group) => ({
       id: group.id,
       method: "GET",
@@ -61,12 +60,12 @@ export class GroupServiceManager {
     return new Promise<any>((resolve, reject) => {
       try {
         this.context.msGraphClientFactory
-        .getClient()
-        .then((client: MSGraphClient) => {
+        .getClient('3')
+        .then((client: MSGraphClientV3) => {
           client
           .api(`/$batch`)
           .post( requestBody, (error: any, responseObject: any) => {
-            let linksResponseContent = {};
+            const linksResponseContent = {};
             responseObject.responses.forEach( response => linksResponseContent[response.id] = response.body.value );
 
             resolve(linksResponseContent);
@@ -82,8 +81,8 @@ export class GroupServiceManager {
     return new Promise<any>((resolve, reject) => {
       try {
         this.context.msGraphClientFactory
-        .getClient()
-        .then((client: MSGraphClient) => {
+        .getClient('3')
+        .then((client: MSGraphClientV3) => {
           client
           .api(`/groups/${groups.id}/members/$count?ConsistencyLevel=eventual`)
           .get((error: any, group: any, rawResponse: any) => {
@@ -99,7 +98,7 @@ export class GroupServiceManager {
 
   public getGroupMembersBatch(groups: IGroup[]): Promise<any> {
 
-    let requestBody = { requests: [] };
+    const requestBody = { requests: [] };
     requestBody.requests = groups.map( (group) => ({
       id: group.id,
       method: "GET",
@@ -109,12 +108,12 @@ export class GroupServiceManager {
     return new Promise<any>((resolve, reject) => {
       try {
         this.context.msGraphClientFactory
-        .getClient()
-        .then((client: MSGraphClient) => {
+        .getClient('3')
+        .then((client: MSGraphClientV3) => {
           client
           .api(`/$batch`)
           .post( requestBody, (error: any, responseObject: any) => {
-            let membersResponseContent = {};
+            const membersResponseContent = {};
             responseObject.responses.forEach( response => membersResponseContent[response.id] = response.body );
 
             resolve(membersResponseContent);
@@ -130,11 +129,11 @@ export class GroupServiceManager {
     return new Promise<any>((resolve, reject) => {
       try {
         this.context.msGraphClientFactory
-        .getClient()
-        .then((client: MSGraphClient) => {
+        .getClient('3')
+        .then((client: MSGraphClientV3) => {
           client
           .api(`/groups/${groups.id}/photos/48x48/$value`)
-          .responseType('blob')
+          //.responseType('blob')
           .get((error: any, group: any, rawResponse: any) => {
             resolve(window.URL.createObjectURL(group));
           });
@@ -147,7 +146,7 @@ export class GroupServiceManager {
 
   public getGroupThumbnailsBatch(groups: IGroup[]): Promise<any> {
 
-    let requestBody = { requests: [] };
+    const requestBody = { requests: [] };
     requestBody.requests = groups.map( (group) => ({
       id: group.id,
       method: "GET",
@@ -157,12 +156,12 @@ export class GroupServiceManager {
     return new Promise<any>((resolve, reject) => {
       try {
         this.context.msGraphClientFactory
-        .getClient()
-        .then((client: MSGraphClient) => {
+        .getClient('3')
+        .then((client: MSGraphClientV3) => {
           client
           .api(`/$batch`)
           .post( requestBody, (error: any, responseObject: any) => {
-            let thumbnailsResponseContent = {};
+            const thumbnailsResponseContent = {};
             responseObject.responses.forEach( response => thumbnailsResponseContent[response.id] = response.body );
 
             resolve(thumbnailsResponseContent);

@@ -16,9 +16,21 @@
         "resource": "Microsoft Graph",
         "scope": "User.Read.All"
       }
-    ]
+    ],
+    "metadata": {
+      "shortDescription": {
+        "default": "sample description"
+      },
+      "longDescription": {
+        "default": "sample description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    }
   },
   "paths": {
     "zippedPackage": "solution/My-Communities.sppkg"
   }
 }
+

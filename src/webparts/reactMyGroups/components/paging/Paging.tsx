@@ -80,7 +80,7 @@ export class Paging extends React.Component<IPagingProps, IPagingState> {
      */
     private _getNumberOfPages(): number {
         const { totalItems, itemsCountPerPage } = this.props;
-        let numPages: number = Math.round(totalItems / itemsCountPerPage);
+        const numPages: number = Math.round(totalItems / itemsCountPerPage);
         return numPages;
     }
 }
