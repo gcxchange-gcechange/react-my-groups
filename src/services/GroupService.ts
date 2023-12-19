@@ -11,16 +11,72 @@ export class GroupServiceManager {
     this.context = context;
   }
 
+  // public getGroups(): Promise<MicrosoftGraph.Group[]> {
+  //   return new Promise<MicrosoftGraph.Group[]>((resolve, reject) => {
+  //     try {
+  //       this.context.msGraphClientFactory
+  //       .getClient('3')
+  //       .then((client: MSGraphClientV3) => {
+  //         client
+  //         .api("/me/memberOf/$/microsoft.graph.group?$filter=groupTypes/any(a:a eq 'unified')")
+  //         .get((error: any, groups: IGroupCollection, rawResponse: any) => {
+  //         //  console.log("GROUP "+JSON.stringify(groups))
+  //           resolve(groups.value);
+  //         });
+  //       });
+  //     } catch(error) {
+  //       console.error("ERROR-"+error);
+  //     }
+  //   });
+  // }
+
   public getGroups(): Promise<MicrosoftGraph.Group[]> {
+    return new Promise<MicrosoftGraph.Group[]>((resolve, reject) => {
+      try {
+        let responseResults: MicrosoftGraph.Group[] = [];
+
+        this.context.msGraphClientFactory.getClient('3').then((client: MSGraphClientV3) => {
+          client.api("/me/memberOf/$/microsoft.graph.group?$filter=groupTypes/any(a:a eq 'unified')").get((error: any, groups: IGroupCollection, rawResponse: any) => {
+            responseResults.push(...groups.value);
+
+            this.context.msGraphClientFactory.getClient('3').then((client: MSGraphClientV3) => {
+              client.api("/me/ownedObjects/$/microsoft.graph.group").get((error: any, groups: IGroupCollection, rawResponse: any) => {
+
+                groups.value.forEach(function(value) {
+                  let foundDuplicate: boolean = false;
+
+                  responseResults.forEach(function(value2) {
+                    if (value.id === value2.id) {
+                      foundDuplicate = true;
+                    }
+                  });
+
+                  if (!foundDuplicate) {
+                    responseResults.push(value)
+                  }
+                })
+              });
+            });
+
+            resolve(responseResults);
+          });
+        });
+      } catch(error) {
+        console.error("ERROR-"+error);
+      }
+    });
+  }
+
+  public getOwnedGroups(): Promise<MicrosoftGraph.Group[]> {
     return new Promise<MicrosoftGraph.Group[]>((resolve, reject) => {
       try {
         this.context.msGraphClientFactory
         .getClient('3')
         .then((client: MSGraphClientV3) => {
           client
-          .api("/me/memberOf/$/microsoft.graph.group?$filter=groupTypes/any(a:a eq 'unified')")
+          .api("/me/ownedObjects/$/microsoft.graph.group") // ?$filter=groupTypes/any(a:a eq 'unified')
           .get((error: any, groups: IGroupCollection, rawResponse: any) => {
-           // console.log("GROUP "+JSON.stringify(groups))
+            //console.log("OWNED GROUP "+JSON.stringify(groups))
             resolve(groups.value);
           });
         });
@@ -29,6 +85,17 @@ export class GroupServiceManager {
       }
     });
   }
+
+
+
+
+
+
+
+
+
+
+
 
   public getGroupLinks(groups: IGroup): Promise<any> {
     return new Promise<any>((resolve, reject) => {
