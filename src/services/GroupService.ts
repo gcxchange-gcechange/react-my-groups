@@ -33,7 +33,7 @@ export class GroupServiceManager {
   public getGroups(): Promise<MicrosoftGraph.Group[]> {
     return new Promise<MicrosoftGraph.Group[]>((resolve, reject) => {
       try {
-        let responseResults: MicrosoftGraph.Group[] = [];
+        const responseResults: MicrosoftGraph.Group[] = [];
 
         this.context.msGraphClientFactory.getClient('3').then((client: MSGraphClientV3) => {
           client.api("/me/memberOf/$/microsoft.graph.group?$filter=groupTypes/any(a:a eq 'unified')").get((error: any, groups: IGroupCollection, rawResponse: any) => {
