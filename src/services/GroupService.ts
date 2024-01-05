@@ -11,38 +11,19 @@ export class GroupServiceManager {
     this.context = context;
   }
 
-  // public getGroups(): Promise<MicrosoftGraph.Group[]> {
-  //   return new Promise<MicrosoftGraph.Group[]>((resolve, reject) => {
-  //     try {
-  //       this.context.msGraphClientFactory
-  //       .getClient('3')
-  //       .then((client: MSGraphClientV3) => {
-  //         client
-  //         .api("/me/memberOf/$/microsoft.graph.group?$filter=groupTypes/any(a:a eq 'unified')")
-  //         .get((error: any, groups: IGroupCollection, rawResponse: any) => {
-  //         //  console.log("GROUP "+JSON.stringify(groups))
-  //           resolve(groups.value);
-  //         });
-  //       });
-  //     } catch(error) {
-  //       console.error("ERROR-"+error);
-  //     }
-  //   });
-  // }
-
   public getGroups(): Promise<MicrosoftGraph.Group[]> {
     return new Promise<MicrosoftGraph.Group[]>((resolve, reject) => {
-      try {
-        const responseResults: MicrosoftGraph.Group[] = [];
+      const responseResults: MicrosoftGraph.Group[] = [];
 
+      try {
         this.context.msGraphClientFactory.getClient('3').then((client: MSGraphClientV3) => {
           client.api("/me/memberOf/$/microsoft.graph.group?$filter=groupTypes/any(a:a eq 'unified')").get((error: any, groups: IGroupCollection, rawResponse: any) => {
             responseResults.push(...groups.value);
 
             this.context.msGraphClientFactory.getClient('3').then((client: MSGraphClientV3) => {
-              client.api("/me/ownedObjects/$/microsoft.graph.group").get((error: any, groups: IGroupCollection, rawResponse: any) => {
+              client.api("/me/ownedObjects/$/microsoft.graph.group").get((error: any, groups2: IGroupCollection, rawResponse: any) => {
 
-                groups.value.forEach(function(value) {
+                groups2.value.forEach(function(value) {
                   let foundDuplicate: boolean = false;
 
                   responseResults.forEach(function(value2) {
@@ -52,18 +33,19 @@ export class GroupServiceManager {
                   });
 
                   if (!foundDuplicate) {
-                    responseResults.push(value)
+                    responseResults.push(value);
                   }
                 })
+
+                resolve(responseResults);
               });
             });
-
-            resolve(responseResults);
           });
         });
       } catch(error) {
         console.error("ERROR-"+error);
       }
+      
     });
   }
 
