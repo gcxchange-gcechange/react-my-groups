@@ -112,6 +112,7 @@ export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMy
       this.setState({
         groups: groups
       });
+
       this._getGroupLinks(groups);
     });
   }
