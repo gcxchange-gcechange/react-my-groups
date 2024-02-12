@@ -62,7 +62,7 @@ export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMy
 
     return (
       <div className={styles.reactMyGroups} style={{ backgroundColor: semanticColors.bodyBackground }}>
-        <div className={styles.title} role="heading" aria-level={2}>{(this.strings.userLang === "FR" ? this.props.titleFr :this.props.titleEn )} </div>
+        <div className={styles.title} role="heading" aria-level={3}>{(this.strings.userLang === "FR" ? this.props.titleFr :this.props.titleEn )} </div>
         {(this.props.toggleSeeAll === false && !!this.props.seeAllLink) && <a aria-label={this.strings.seeAllLabel} href={this.props.seeAllLink}><div className={styles.seeAll}>{this.strings.seeAll}</div></a>}
         <div className={styles.createComm}><Icon iconName="Add" className={styles.addIcon} /><a href={this.props.createCommLink}>{this.strings.createComm}</a></div>
           {this.state.isLoading ?
