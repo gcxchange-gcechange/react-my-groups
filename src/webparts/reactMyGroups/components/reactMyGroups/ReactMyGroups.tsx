@@ -29,6 +29,7 @@ export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMy
   }
 
   public strings = SelectLanguage(this.props.prefLang);
+
   public async componentDidUpdate (prevProps:IReactMyGroupsProps):Promise<void>{
     // if (prevProps.prefLang !== this.props.prefLang) {
     //   this.strings = SelectLanguage(this.props.prefLang);
@@ -118,31 +119,52 @@ export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMy
   }
 
   public _getGroupLinks = (groups: any): void => {
-    GroupService.getGroupLinksBatch(groups).then(groupUrls => {
-      this.setState(prevState => ({
-        groups: prevState.groups.map(group => group.id !== null ? {...group, url: groupUrls[group.id]} : group)
-      }));
-    });
+    groups.map((groupItem) =>
+    GroupService.getGroupDetailsBatch(groupItem).then(groupData => {
 
+      console.log("groupURLS",groupData);
+
+      if (groupData[1] && (groupData[1] !== null || groupData[1] !== undefined)) {
+
+        this.setState(prevState => ({
+          groups: prevState.groups.map((group) =>
+
+          group.id === groupItem.id
+            ? {
+            ...group,
+            url: groupData[1].value,
+            members: groupData[2],
+            thumbnail: "data:image/jpeg;base64," + groupData[3]
+          }
+            : group)
+        }));
+
+      }
+
+
+
+    }));
+    console.log("STATE",this.state.groups)
     this._getGroupMembers(groups);
   }
 
   public _getGroupMembers = (groups: any): void => {
-    GroupService.getGroupMembersBatch(groups).then(groupMembers => {
-      this.setState(prevState => ({
-        groups: prevState.groups.map(group => group.id !== null ? {...group, members: groupMembers[group.id]} : group)
-      }));
-    });
+    console.log("MEME", groups)
+    // GroupService.getGroupMembersBatch(groups).then(groupMembers => {
+    //   this.setState(prevState => ({
+    //     groups: prevState.groups.map(group => group.id !== null ? {...group, members: groupMembers[group.id]} : group)
+    //   }));
+    // });
 
     this._getGroupThumbnails(groups);
   }
 
   public _getGroupThumbnails = (groups: any): void => {
-    GroupService.getGroupThumbnailsBatch(groups).then(grouptbs => {
-      this.setState(prevState => ({
-        groups: prevState.groups.map(group => group.id !== null ? {...group, thumbnail: "data:image/jpeg;base64," + grouptbs[group.id], color: "#0078d4"} : group)
-      }));
-    });
+    // GroupService.getGroupThumbnailsBatch(groups).then(grouptbs => {
+    //   this.setState(prevState => ({
+    //     groups: prevState.groups.map(group => group.id !== null ? {...group, thumbnail: "data:image/jpeg;base64," + grouptbs[group.id], color: "#0078d4"} : group)
+    //   }));
+    // });
 
     this.setState({
       isLoading: false
