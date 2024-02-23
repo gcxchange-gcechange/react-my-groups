@@ -46,7 +46,6 @@ export class GroupServiceManager {
   }
 
   public getGroupDetailsBatch(group: any): Promise<any> {
-    console.log("ID",group.id)
     const requestBody = {
       requests: [
         {
@@ -76,7 +75,6 @@ export class GroupServiceManager {
               .api(`/$batch`)
               .post(requestBody, (error: any, responseObject: any) => {
 
-                console.log("REs", responseObject);
                 if (error) {
                   Promise.reject(error);
                 }

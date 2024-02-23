@@ -93,7 +93,7 @@
 
   .cardBanner {
     position: relative;
-    height: 144px;
+    // height: 144px;
     padding-top: 40px;
     width: 100%;
   }
@@ -162,7 +162,8 @@
     position: absolute;
     top: 0;
     height: 40px;
-    width: 100%;;
+    width: 100%;
+    background: #106ebe;
   }
 
   .bannerImgList {

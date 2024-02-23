@@ -122,8 +122,6 @@ export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMy
     groups.map((groupItem) =>
     GroupService.getGroupDetailsBatch(groupItem).then(groupData => {
 
-      console.log("groupURLS",groupData);
-
       if (groupData[1] && (groupData[1] !== null || groupData[1] !== undefined)) {
 
         this.setState(prevState => ({
@@ -141,35 +139,14 @@ export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMy
 
       }
 
-
-
     }));
-    console.log("STATE",this.state.groups)
-    this._getGroupMembers(groups);
-  }
-
-  public _getGroupMembers = (groups: any): void => {
-    console.log("MEME", groups)
-    // GroupService.getGroupMembersBatch(groups).then(groupMembers => {
-    //   this.setState(prevState => ({
-    //     groups: prevState.groups.map(group => group.id !== null ? {...group, members: groupMembers[group.id]} : group)
-    //   }));
-    // });
-
-    this._getGroupThumbnails(groups);
-  }
-
-  public _getGroupThumbnails = (groups: any): void => {
-    // GroupService.getGroupThumbnailsBatch(groups).then(grouptbs => {
-    //   this.setState(prevState => ({
-    //     groups: prevState.groups.map(group => group.id !== null ? {...group, thumbnail: "data:image/jpeg;base64," + grouptbs[group.id], color: "#0078d4"} : group)
-    //   }));
-    // });
 
     this.setState({
       isLoading: false
     });
+
   }
+
 
   private _onRenderItem = (item: any, index: number): JSX.Element => {
     return (
@@ -194,7 +171,7 @@ export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMy
         <div className={styles.cardBanner}>
           <div className={styles.topBanner} style={{backgroundColor: item.color}} />
           <img className={styles.bannerImg} src={item.thumbnail} alt={`${this.strings.altImgLogo} ${item.displayName}`} />
-          <div className={styles.cardTitle}>{item.displayName}</div>
+          <h3 className={styles.cardTitle}>{item.displayName}</h3>
         </div>
       </a>
     </div>
@@ -202,7 +179,7 @@ export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMy
   }
 
   private _onRenderListItem = (item: any, finalSize: ISize, isCompact: boolean): JSX.Element => {
-
+    console.log(item)
     return (
         <div className={styles.siteCardList}>
         <a className="community-list-item" href={item.url}>
