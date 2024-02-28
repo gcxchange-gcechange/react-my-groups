@@ -172,7 +172,13 @@ export class ReactMyGroups extends React.Component<IReactMyGroupsProps, IReactMy
         <div className={styles.cardBanner}>
           <div className={styles.topBanner} style={{backgroundColor: item.color}} />
           <img className={styles.bannerImg} src={item.thumbnail} alt={`${this.strings.altImgLogo} ${item.displayName}`} />
-          <div className={styles.cardTitle}>{item.displayName}</div>
+          <h3 className={styles.cardTitle}>{item.displayName}</h3>
+          <p
+          className={styles.cardDescription}
+          aria-label={item.description}
+        >
+          {item.description}
+        </p>
         </div>
       </a>
     </div>
