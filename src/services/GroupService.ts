@@ -97,13 +97,13 @@ export class GroupServiceManager {
     });
   }
 
-  public getGroupLinksBatch(groups: IGroup[]): Promise<any> {
+  public getGroupDetailsBatch(groups: IGroup[]): Promise<any> {
 
     const requestBody = { requests: [] };
-    requestBody.requests = groups.map( (group) => ({
+    requestBody.requests = groups.map((group) => ({
       id: group.id,
       method: "GET",
-      url: `/groups/${group.id}/sites/root/weburl`
+      url: `/groups/${group.id}/sites/root/?$select=id,webUrl,lastModifiedDateTime`,
     }));
 
     return new Promise<any>((resolve, reject) => {
@@ -115,7 +115,7 @@ export class GroupServiceManager {
           .api(`/$batch`)
           .post( requestBody, (error: any, responseObject: any) => {
             const linksResponseContent = {};
-            responseObject.responses.forEach( response => linksResponseContent[response.id] = response.body.value );
+            responseObject.responses.forEach( response => linksResponseContent[response.id] = response.body );
 
             resolve(linksResponseContent);
           });

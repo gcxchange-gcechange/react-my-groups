@@ -156,15 +156,22 @@ export class ReactMyGroups extends React.Component<
         groups: groups,
       });
 
-      this._getGroupLinks(groups);
+      this._getGroupDetails(groups);
     });
   };
 
-  public _getGroupLinks = (groups: any): void => {
-    GroupService.getGroupLinksBatch(groups).then((groupUrls) => {
+  public _getGroupDetails = (groups: any): void => {
+    GroupService.getGroupDetailsBatch(groups).then((groupDetails) => {
       this.setState((prevState) => ({
         groups: prevState.groups.map((group) =>
-          group.id !== null ? { ...group, url: groupUrls[group.id] } : group
+          group.id !== null
+            ? {
+                ...group,
+                url: groupDetails[group.id].webUrl,
+                lastModified: groupDetails[group.id].lastModifiedDateTime,
+                siteId: groupDetails[group.id].id
+              }
+            : group
         ),
       }));
     });
@@ -264,7 +271,7 @@ export class ReactMyGroups extends React.Component<
                       paddingRight: "5px",
                     }}
                   >
-                    {this.strings.members} : 
+                    {this.strings.members} :
                   </span>
                   <span>{item.members}</span>
                 </p>
@@ -277,7 +284,7 @@ export class ReactMyGroups extends React.Component<
                       paddingRight: "5px",
                     }}
                   >
-                    {this.strings.siteViews} : 
+                    {this.strings.siteViews} :
                   </span>
                   <span>8 {item.views}</span>
                 </p>
@@ -291,7 +298,7 @@ export class ReactMyGroups extends React.Component<
                       paddingRight: "5px",
                     }}
                   >
-                    {this.strings.created} : 
+                    {this.strings.created} :
                   </span>
                   <span>
                     {this.strings.userLang === "fr-fr"
@@ -312,18 +319,22 @@ export class ReactMyGroups extends React.Component<
                       paddingRight: "5px",
                     }}
                   >
-                    {this.strings.lastModified} : 
+                    {this.strings.lastModified} :
                   </span>
                   <span
                     aria-label={
                       this.strings.userLang === "fr-fr"
-                        ? new Date(item.modified).toLocaleDateString("fr-CA")
-                        : new Date(item.modified).toLocaleDateString("en-CA")
+                        ? new Date(item.lastModified).toLocaleDateString(
+                            "fr-CA"
+                          )
+                        : new Date(item.lastModified).toLocaleDateString(
+                            "en-CA"
+                          )
                     }
                   >
                     {this.strings.userLang === "fr-fr"
-                      ? new Date(item.modified).toLocaleDateString("fr-CA")
-                      : new Date(item.modified).toLocaleDateString("en-CA")}
+                      ? new Date(item.lastModified).toLocaleDateString("fr-CA")
+                      : new Date(item.lastModified).toLocaleDateString("en-CA")}
                   </span>
                 </p>
               </div>
