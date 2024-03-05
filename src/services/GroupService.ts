@@ -206,7 +206,7 @@ export class GroupServiceManager {
   }
 
   public getGroupThumbnailsBatch(groups: IGroup[]): Promise<any> {
-    const x = typeof groups;   
+    const x = typeof groups;
     console.log(x);
 
     const requestBody = { requests: [] };
@@ -244,9 +244,9 @@ export class GroupServiceManager {
     console.log(x);
     const requestBody = { requests: [] };
     requestBody.requests = groups.map((group) => ({
-      id: group[0],
+      id: group.id,
       method: "GET",
-      url: `/sites/${group[1].id}/analytics/lastsevendays/access/actionCount`,
+      url: `/sites/${group.siteId}/analytics/lastsevendays/access/actionCount`,
     }));
 
     return new Promise<any>((resolve, reject) => {

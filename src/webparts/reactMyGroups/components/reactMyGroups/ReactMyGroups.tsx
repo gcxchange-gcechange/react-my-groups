@@ -162,20 +162,23 @@ export class ReactMyGroups extends React.Component<
 
   public _getGroupDetails = (groups: any): void => {
     GroupService.getGroupDetailsBatch(groups).then((groupDetails) => {
-      this.setState((prevState) => ({
-        groups: prevState.groups.map((group) =>
-          group.id !== null
-            ? {
-                ...group,
-                url: groupDetails[group.id].webUrl,
-                lastModified: groupDetails[group.id].lastModifiedDateTime,
-                siteId: groupDetails[group.id].id,
-              }
-            : group
-        ),
-      }));
-     const groups:any= Object.entries(groupDetails);
-      this._getGroupViews(groups);
+      this.setState(
+        (prevState) => ({
+          groups: prevState.groups.map((group) =>
+            group.id !== null
+              ? {
+                  ...group,
+                  url: groupDetails[group.id].webUrl,
+                  lastModified: groupDetails[group.id].lastModifiedDateTime,
+                  siteId: groupDetails[group.id].id,
+                }
+              : group
+          ),
+        }),
+        () => {
+          this._getGroupViews(this.state.groups);
+        }
+      );
     });
     this._getGroupMembers(groups);
   };
@@ -200,7 +203,6 @@ export class ReactMyGroups extends React.Component<
         ),
       }));
     });
-
     this._getGroupThumbnails(groups);
   };
 
