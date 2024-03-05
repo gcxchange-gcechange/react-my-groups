@@ -169,14 +169,25 @@ export class ReactMyGroups extends React.Component<
                 ...group,
                 url: groupDetails[group.id].webUrl,
                 lastModified: groupDetails[group.id].lastModifiedDateTime,
-                siteId: groupDetails[group.id].id
+                siteId: groupDetails[group.id].id,
               }
             : group
         ),
       }));
+     const groups:any= Object.entries(groupDetails);
+      this._getGroupViews(groups);
     });
-
     this._getGroupMembers(groups);
+  };
+
+  public _getGroupViews = (groups: any): void => {
+    GroupService.getGroupViewsBatch(groups).then((views) => {
+      this.setState((prevState) => ({
+        groups: prevState.groups.map((group) =>
+          group.id !== null ? { ...group, views: views[group.id] } : group
+        ),
+      }));
+    });
   };
 
   public _getGroupMembers = (groups: any): void => {
@@ -286,7 +297,7 @@ export class ReactMyGroups extends React.Component<
                   >
                     {this.strings.siteViews} :
                   </span>
-                  <span>8 {item.views}</span>
+                  <span>{item.views}</span>
                 </p>
               </div>
               <div className={styles.footerColumn2}>
@@ -363,7 +374,6 @@ export class ReactMyGroups extends React.Component<
             </div>
             <div className={`${styles.articleFlex} ${styles.secondSection}`}>
               <div className={styles.cardTitleList}>{item.displayName}</div>
-              <div className={styles.cardDescription}>{item.description}</div>
               <div className={styles.members}>
                 {item.members} {this.strings.members}
               </div>
