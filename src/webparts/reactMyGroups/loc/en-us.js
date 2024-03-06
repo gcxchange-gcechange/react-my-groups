@@ -28,6 +28,10 @@ define([], function() {
     "seeAllToggle": "This webpart is for the see all page",
     "seeAllOn": "Yes",
     "seeAllOff": "No",
-    "loadingState": "Loading"
+    "loadingState": "Loading",
+    "members": "Members",
+    "siteViews": "Views",
+    "created": "Created",
+    "lastModified": "Last modified",
   }
 });
