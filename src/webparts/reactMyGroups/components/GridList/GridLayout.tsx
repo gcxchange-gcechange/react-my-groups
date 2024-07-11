@@ -73,10 +73,10 @@ export class GridLayout extends React.Component<IGridLayoutProps, IGridLayoutSta
     return (
       <div
       className={styles.rendergrid}
-        style={{
-          width: `${cellWidth}px`,
-          marginRight: `${cellPadding}px`
-        }}
+        // style={{
+        //   width: `${cellWidth}px`,
+        //   marginRight: `${cellPadding}px`
+       // }}
       >
           {this.props.onRenderGridItem(item, finalSize, isCompact)}
 

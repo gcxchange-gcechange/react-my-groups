@@ -28,6 +28,11 @@ declare interface IReactMyGroupsWebPartStrings {
   seeAllOn: string;
   seeAllOff:string;
   loadingState: string;
+
+  members:string;
+  siteViews:string;
+  created: string;
+  lastModified: string;
 }
 
 declare module 'ReactMyGroupsWebPartStrings' {

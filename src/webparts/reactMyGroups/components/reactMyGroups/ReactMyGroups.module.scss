@@ -1,6 +1,5 @@
-@import '~@fluentui/react/dist/sass/References.scss';
+@import "~@fluentui/react/dist/sass/References.scss";
 .reactMyGroups {
-
   .compactContainer {
     margin: 0px 5px 5px;
     position: relative;
@@ -43,7 +42,7 @@
     margin: 6px 0;
     text-overflow: ellipsis;
     white-space: nowrap;
-    color: rgb(50,49,48);
+    color: rgb(50, 49, 48);
     display: block;
     margin-block-start: 1em;
     margin-block-end: 1em;
@@ -51,7 +50,7 @@
     margin-inline-end: 0px;
   }
 
-  .cardContainer{
+  .cardContainer {
     outline: transparent;
     position: relative;
   }
@@ -68,20 +67,22 @@
     outline: 2px solid black;
   }
   .siteCard {
-    height: 200px;
-    max-width: 286px;
+    /*  height: 200px;*/
+    width: 376px;
     box-sizing: border-box;
     margin-bottom: 20px;
     outline: transparent;
     position: relative;
     background-color: rgb(255, 255, 255);
-    box-shadow: rgba(0, 0, 0, 0.133) 0px 1.6px 3.6px 0px, rgba(0, 0, 0, 0.11) 0px 0.3px 0.9px 0px;
+    box-shadow: rgba(0, 0, 0, 0.133) 0px 1.6px 3.6px 0px,
+      rgba(0, 0, 0, 0.11) 0px 0.3px 0.9px 0px;
     border-width: 1px;
     border-style: solid;
     border-image: initial;
     border-radius: 2px;
     overflow: hidden;
     border-color: rgb(237, 235, 233);
+    height: 270px;
   }
 
   .cardBannerList {
@@ -93,24 +94,24 @@
 
   .cardBanner {
     position: relative;
-    height: 144px;
+    /* height: 144px;*/
     padding-top: 40px;
     width: 100%;
   }
 
-  .members{
-    color:#6B6B6B;
+  .members {
+    color: #6b6b6b;
     font-size: 12px;
     bottom: 0px;
-    padding-left:12px;
+    padding-left: 12px;
   }
 
   .articleFlex {
-    float:left;
-    padding:1%;
+    float: left;
+    padding: 1%;
   }
 
-  .secondSection{
+  .secondSection {
     width: calc(80% - 55px);
   }
 
@@ -132,7 +133,7 @@
   .cardTitle {
     font-size: 16px;
     margin-top: 28px;
-    font-weight: 600;
+    font-weight: 700;
     line-height: 20px;
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -141,8 +142,8 @@
     max-height: 2.7em;
     overflow: hidden;
     text-align: left;
-    padding: 0 12px;
-    color: rgb(50, 49, 48);
+    /* padding: 0 12px;*/
+    /*color: rgb(50, 49, 48);*/
   }
 
   .cardDescription {
@@ -150,29 +151,29 @@
     line-height: 20px;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
+    -webkit-line-clamp: 3;
     box-sizing: content-box;
     overflow: hidden;
     text-align: left;
-    padding: 0 12px;
-    color: rgb(50, 49, 48);
+    /* padding: 0 12px;*/
+    /*color: rgb(50, 49, 48);*/
   }
 
   .topBanner {
     position: absolute;
     top: 0;
     height: 40px;
-    width: 100%;;
+    width: 100%;
   }
 
   .bannerImgList {
-    width:100%;
+    width: 100%;
     box-sizing: border-box;
-    box-shadow: 0 0 4px 0 rgba(0,0,0,.2);
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
     border-width: 1px;
     border-style: solid;
     border-image: initial;
-    border-color: rgb(255,255,255);
+    border-color: rgb(255, 255, 255);
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: contain;
@@ -185,11 +186,11 @@
     height: 48px;
     width: 48px;
     box-sizing: border-box;
-    box-shadow: 0 0 4px 0 rgba(0,0,0,.2);
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
     border-width: 1px;
     border-style: solid;
     border-image: initial;
-    border-color: rgb(255,255,255);
+    border-color: rgb(255, 255, 255);
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: contain;
@@ -203,9 +204,9 @@
 
   a {
     text-decoration: none;
-    color:#106ebe;
+    color: #106ebe;
   }
-  a:focus{
+  a:focus {
     box-shadow: 0 0 5px #000;
   }
 
@@ -234,14 +235,15 @@
     text-align: left;
     color: rgb(50, 49, 48);
     white-space: pre-wrap;
-    font-family: "Segoe UI", "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    font-family: "Segoe UI", "Segoe UI Web (West European)", "Segoe UI",
+      -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
     font-size: 20px;
     font-weight: 600;
     margin-right: 32px;
     margin-bottom: 18px;
     flex-grow: 1;
-    float:left;
+    float: left;
   }
 
   .subTitle {
@@ -268,7 +270,8 @@
     // Basic Button
     outline: transparent;
     position: relative;
-    font-family: "Segoe UI WestEuropean","Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",sans-serif;
+    font-family: "Segoe UI WestEuropean", "Segoe UI", -apple-system,
+      BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
     font-size: $ms-font-size-m;
     font-weight: $ms-font-weight-regular;
@@ -290,9 +293,9 @@
   }
 
   .buttonLink {
-    background: none!important;
+    background: none !important;
     border: none;
-    padding: 0!important;
+    padding: 0 !important;
     /*optional*/
     font-family: arial, sans-serif;
     /*input has OS specific font-family*/
@@ -302,21 +305,40 @@
     position: absolute;
     right: 0;
   }
-  .groupsContainer{
-    clear:both;
+  .groupsContainer {
+    clear: both;
   }
-  .createComm{
-    clear:both;
+  .createComm {
+    clear: both;
     margin-bottom: 5%;
     text-decoration-line: underline;
   }
-  .addIcon{
+  .addIcon {
     color: #106ebe;
     font-weight: bold;
-    font-size:12px;
+    font-size: 12px;
     padding-right: 1%;
   }
-  .seeAll{
-    float:right;
+  .seeAll {
+    float: right;
+  }
+  .gridContent {
+    padding: 0px 12px;
+    color: rgb(50, 49, 48);
+  }
+  .mainContent {
+    border-bottom: 2px solid #eee;
+    height:120px;
+  }
+  .footerContent{
+    display:flex;
+    justify-content: space-between;
+  }
+  .footerColumn1{
+    text-align: left;
+
+  }
+  .footerColumn2{
+        text-align: right;
   }
 }

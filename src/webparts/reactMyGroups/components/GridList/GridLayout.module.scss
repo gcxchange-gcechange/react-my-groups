@@ -9,7 +9,7 @@
 
 .gridLayout {
   overflow: hidden;
-  font-size: 0;
+ /* font-size: 0;*/
   position: relative;
   background-color: transparent;
 
@@ -49,6 +49,12 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
+  }
+
+  :global(.ms-List-page) {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 
   :global(.ms-List-cell) {
